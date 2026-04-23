@@ -1,9 +1,9 @@
+import { Collection } from './../../model/collection';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
-import { Collection } from '../../model/collection';
 import { CollectionService } from '../../service/collection-service';
 
 @Component({
@@ -18,10 +18,11 @@ export class CollectionsPage implements OnInit {
   private formBuilder: FormBuilder = inject(FormBuilder);
 
   private collection: Collection = {nom: ''};
-  
+
+  protected editingCollection ?: Collection | null;
   protected collections$!: Observable<Collection[]>;
   private refresh$: Subject<void> = new Subject<void>();
-  
+
   protected formCollection!: FormGroup;
   protected formNomCtrl!: FormControl;
 
@@ -43,13 +44,6 @@ export class CollectionsPage implements OnInit {
     this.refresh$.next();
   }
 
-  public addCollection() {
-    const collection: Collection = {
-      nom: this.formNomCtrl.value
-    };
-    this.collectionService.addCollection(collection).subscribe(() => this.reloadCollections());
-  }
-
   public deleteCollection(collection: Collection) {
     if (collection.id!=undefined) {
         this.collectionService.deleteCollectionById(collection.id).subscribe(() => this.reloadCollections());
@@ -57,10 +51,27 @@ export class CollectionsPage implements OnInit {
     }
   }
 
-  public updateCollection(collection: Collection) {
-    this.collectionService.updateCollection(collection).subscribe(() => {
-      this.collection = {nom: ''};
-    });
+  public ajouterOuModifier(){
+    const collection : Collection = {
+      nom: this.formNomCtrl.value,
+      id: this.editingCollection?.id
+    }
+
+    if(this.editingCollection){
+      this.collectionService.updateCollection(collection).subscribe(() => {
+        this.editingCollection = null;
+        this.formCollection.reset();
+        this.reloadCollections();
+      })
+    }
+    else{
+      this.collectionService.addCollection(collection).subscribe(() => this.reloadCollections());
+    }
+  }
+
+  public editer(collection: Collection) {
+    this.editingCollection = collection;
+    this.formNomCtrl.setValue(collection.nom);
     this.reloadCollections();
   }
 }

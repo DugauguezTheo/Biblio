@@ -1,6 +1,6 @@
 <h1>Liste des collections</h1>
 
-<form (submit)="addCollection()" [formGroup]="formCollection">
+<form (submit)="ajouterOuModifier()" [formGroup]="formCollection">
     <div class="mb-3 row">
         <label for="nom" class="col-sm-2 col-form-label">Nom</label>
         <div class="col-sm-10">
@@ -10,7 +10,8 @@
     </div>
 
     <div>
-        <input [disabled]="formCollection.invalid" type="submit" class="btn btn-success" value="Ajouter" />
+        <input *ngIf="!editingCollection"[disabled]="formCollection.invalid" type="submit" class="btn btn-success" value="Ajouter" />
+        <input *ngIf="editingCollection" [disabled]="formCollection.invalid" type="submit" class="btn btn-warning" value="Modifier" />
     </div>
 </form>
 
@@ -30,7 +31,7 @@
             <td>{{ collection.id }}</td>
             <td>{{ collection.nom }}</td>
             <td>
-                <button class="btn btn-warning" (click)="updateCollection(collection)">Modifier</button>
+                <button class="btn btn-warning" (click)="editer(collection)">Modifier</button>
                 <button class="btn btn-danger" (click)="deleteCollection(collection)">Supprimer</button>
             </td>
         </tr>
