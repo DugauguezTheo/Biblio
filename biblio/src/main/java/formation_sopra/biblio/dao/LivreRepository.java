@@ -17,16 +17,6 @@ import formation_sopra.biblio.model.Livre;
  * For more information refer to https://github.com/jhipster/generator-jhipster/issues/17990.
  */
 @Repository
-public interface LivreRepository extends LivreRepositoryWithBagRelationships, JpaRepository<Livre, Long> {
-    default Optional<Livre> findOneWithEagerRelationships(Long id) {
-        return this.fetchBagRelationships(this.findById(id));
-    }
+public interface LivreRepository extends JpaRepository<Livre, Long> {
 
-    default List<Livre> findAllWithEagerRelationships() {
-        return this.fetchBagRelationships(this.findAll());
-    }
-
-    default Page<Livre> findAllWithEagerRelationships(Pageable pageable) {
-        return this.fetchBagRelationships(this.findAll(pageable));
-    }
 }

@@ -144,41 +144,7 @@ public class Livre implements Serializable {
         return this;
     }
 
-    // public Set<Genre> getGenreses() {
-    //     return this.genreses;
-    // }
 
-    // public void setGenreses(Set<Genre> genres) {
-    //     this.genreses = genres;
-    // }
-
-    // public Livre genreses(Set<Genre> genres) {
-    //     this.setGenreses(genres);
-    //     return this;
-    // }
-
-    // public Livre addGenres(Genre genre) {
-    //     this.genreses.add(genre);
-    //     return this;
-    // }
-
-    // public Livre removeGenres(Genre genre) {
-    //     this.genreses.remove(genre);
-    //     return this;
-    // }
-
-    // public Avis getAvis() {
-    //     return this.avis;
-    // }
-
-    // public void setAvis(Avis avis) {
-    //     this.avis = avis;
-    // }
-
-    // public Livre avis(Avis avis) {
-    //     this.setAvis(avis);
-    //     return this;
-    // }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

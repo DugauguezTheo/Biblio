@@ -144,11 +144,9 @@ public class LivreResource {
     @GetMapping("")
     public List<Livre> getAllLivres(@RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload) {
         LOG.debug("REST request to get all Livres");
-        if (eagerload) {
-            return livreRepository.findAllWithEagerRelationships();
-        } else {
-            return livreRepository.findAll();
-        }
+
+        return livreRepository.findAll();
+        
     }
 
     /**
@@ -160,7 +158,8 @@ public class LivreResource {
     @GetMapping("/{id}")
     public ResponseEntity<Livre> getLivre(@PathVariable("id") Long id) {
         LOG.debug("REST request to get Livre : {}", id);
-        Optional<Livre> livre = livreRepository.findOneWithEagerRelationships(id);
+        // Optional<Livre> livre = livreRepository.findOneWithEagerRelationships(id);
+        Optional<Livre> livre = livreRepository.findById(id);
         return livre.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

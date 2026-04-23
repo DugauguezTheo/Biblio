@@ -1,12 +1,9 @@
 package formation_sopra.biblio.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Avis.
@@ -34,7 +31,6 @@ public class Avis implements Serializable {
     private Instant date;
 
     @ManyToOne
-    // @JsonIgnoreProperties(value = { "auteur", "editeur", "collection", "genreses", "avis" }, allowSetters = true)
     private Livre livre;
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -97,39 +93,6 @@ public class Avis implements Serializable {
     public void setLivre(Livre livre) {
         this.livre = livre;
     }
-
-    // public Set<Livre> getLivres() {
-    //     return this.livres;
-    // }
-
-    // public void setLivres(Set<Livre> livres) {
-    //     if (this.livres != null) {
-    //         this.livres.forEach(i -> i.setAvis(null));
-    //     }
-    //     if (livres != null) {
-    //         livres.forEach(i -> i.setAvis(this));
-    //     }
-    //     this.livres = livres;
-    // }
-
-    // public Avis livres(Set<Livre> livres) {
-    //     this.setLivres(livres);
-    //     return this;
-    // }
-
-    // public Avis addLivre(Livre livre) {
-    //     this.livres.add(livre);
-    //     livre.setAvis(this);
-    //     return this;
-    // }
-
-    // public Avis removeLivre(Livre livre) {
-    //     this.livres.remove(livre);
-    //     livre.setAvis(null);
-    //     return this;
-    // }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
