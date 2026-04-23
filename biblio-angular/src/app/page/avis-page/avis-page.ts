@@ -5,6 +5,9 @@ import { Observable, startWith, Subject, switchMap } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Avis } from '../../model/avis';
 import { CommonModule } from '@angular/common';
+import { Livre } from '../../model/livre';
+import { LivreService } from '../../service/livre-service';
+
 
 @Component({
   selector: 'app-avis',
@@ -18,6 +21,8 @@ export class AvisPage implements OnInit{
   private titleService: Title = inject(Title);
 
   private avisService: AvisService = inject(AvisService); 
+  private livreService: LivreService = inject(LivreService); 
+
 
   private formBuilder: FormBuilder = inject(FormBuilder);
 
@@ -33,12 +38,12 @@ export class AvisPage implements OnInit{
   protected formNoteCtrl!: FormControl;
   protected formCommentaireCtrl!: FormControl;
   protected formDateCtrl!: FormControl;
+  protected formLivreCtrl!: FormControl;
 
 
   //Variables
-  notes: number[] = [1, 2, 3, 4, 5];
-  selectedStar: number = 0;
-
+  protected notes: number[] = [1, 2, 3, 4, 5];
+  protected livres!: Observable<Livre[]>;
 
 
   ngOnInit(): void {
@@ -52,38 +57,39 @@ export class AvisPage implements OnInit{
     
     //Forms
 
-    this.formNoteCtrl = this.formBuilder.control(0, Validators.required);
+    this.formNoteCtrl = this.formBuilder.control(0, Validators.min(1));
     this.formCommentaireCtrl = this.formBuilder.control("", Validators.required);
-    this.formDateCtrl = this.formBuilder.control(Date.now(), Validators.required);
-    
+    this.formDateCtrl = this.formBuilder.control('', Validators.required);
+    this.formLivreCtrl = this.formBuilder.control('', Validators.required);
+
     this.formAvis = this.formBuilder.group({
       // Description des contrôles du formulaire
       note: this.formNoteCtrl,
       commentaire: this.formCommentaireCtrl,
-      date: this.formDateCtrl
+      date: this.formDateCtrl,
+      livre: this.formLivreCtrl
     });
 
 
     //FindAll()
     this.avisService.findAll();
 
-
-
+    this.livres = this.livreService.findAllLivres();
   }
 
   //Gestion étoiles
   protected countStar(note: number){
-    this.selectedStar = note;
+    this.formNoteCtrl.setValue(note);
   }
 
 
   addAvis(){
-
     const avis: Avis = {
       id: 0,
-      note: this.selectedStar,
+      note: this.formNoteCtrl.value,
       commentaire: this.formCommentaireCtrl.value,
-      date: this.formDateCtrl.value};
+      date: this.formDateCtrl.value,
+      livre: this.formLivreCtrl.value}
   
       this.avisService.add(avis);
     }

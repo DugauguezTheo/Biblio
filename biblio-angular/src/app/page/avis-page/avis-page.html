@@ -3,36 +3,65 @@
 <form (submit)="addAvis()" [formGroup]="formAvis">
 
     <!-- Note -->
-    <div style="display: flex; flex-direction: column; align-items: flex-start; margin-right: 20px;">
-        <div>
-            <label for="note">Note</label>
+        
+    <div class="mb-3 row">
+        <label for="note" class="col-sm-2 col-form-label">Note</label>
+        
+            <div class="col-sm-10" [class.is-invalid]="formNoteCtrl.invalid">
 
-            <ul class="rating-list" *ngFor="let star of notes">
-                <li (click)="countStar(star)"
-                    [ngClass]="{'selected': (star <= selectedStar)}">
-                        ☆
-                </li>             
-            </ul>
+                <ul class="rating-list" *ngFor="let star of notes">
+                    <li (click)="countStar(star)"
+                        [ngClass]="{
+                            'selected': (star <= formNoteCtrl.value),
+                            'invalid': formNoteCtrl.hasError('min')}">
+                    ☆
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Not necessary with stars already red -->
+            <!-- <div *ngIf="formNoteCtrl.hasError('min')" class="invalid-feedback">Une note est obligatoire</div> -->
+
+    </div>
+
+    <!-- Commentaire -->
+    <div class="mb-3 row">
+        <label for="commentaire" class="col-sm-2 col-form-label">Commentaire</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="commentaire" [class.is-invalid]="formCommentaireCtrl.hasError('required')"/>
+            <div *ngIf="formCommentaireCtrl.hasError('required')" class="invalid-feedback">Un commentaire est obligatoire</div>
         </div>
 
-        <!-- Commentaire -->
-        <div style="display: inline-block;">
-            <label for="commentaire">Commentaire</label>
-            <input type="text" class="form-control" formControlName="commentaire"/>
-            
-        </div>
+    </div>
 
-        <!-- Date -->
-        <div >
-            <label for="date">Date</label>
-            <input type="date" class="form-control" formControlName="date" />
-            
+    <!-- Date -->
+    <div class="mb-3 row">
+        <label for="date" class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" formControlName="date" [class.is-invalid]="formDateCtrl.invalid"/>
+        
+            <div *ngIf="formDateCtrl.hasError('required')" class="invalid-feedback">Une date est obligatoire</div>
         </div>
+    </div>
 
 
-        <div style="margin-top: 2%;"> 
-            <input [disabled]="formAvis.invalid" type="submit" class="btn btn-success" value="Ajouter" />
+    <!-- Livre -->
+    <div class="mb-3 row">
+        <label for="livre" class="col-sm-2 col-form-label">Livre</label>
+        <div class="col-sm-10">
+            <select name="livre" id="livre" [class.is-invalid]="formLivreCtrl.invalid">
+            <option value=""> -- Selectionner un livre --</option>
+            <option *ngFor="let l of livres | async" formControlName="avis.livre">{{ l.titre }}</option>
+            </select>
+        
+
+        <div *ngIf="formLivreCtrl.hasError('required')" class="invalid-feedback">Un livre est obligatoire</div>
         </div>
+    </div>
+
+
+    <div style="margin-top: 2%;"> 
+        <input [disabled]="formAvis.invalid" type="submit" class="btn btn-success" value="Ajouter" />
     </div>
 
 </form>
