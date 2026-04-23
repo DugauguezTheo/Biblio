@@ -60,13 +60,13 @@ export class Livres implements OnInit{
     this.formTitreCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
     this.formResumeCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
     this.formAnneeCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
-    this.formAuteurCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
-    this.formEditeurCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
-    //this.formCollectionCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
+    this.formAuteurCtrl = this.formBuilder.control(null, Validators.required);
+    this.formEditeurCtrl = this.formBuilder.control(null, Validators.required);
+    this.formCollectionCtrl = this.formBuilder.control(null, Validators.required);
 
     this.formLivre = this.formBuilder.group({
       // Decription des contrôles du formulaire
-      libelle: this.formTitreCtrl,
+      titre: this.formTitreCtrl,
       resume: this.formResumeCtrl,
       annee: this.formAnneeCtrl,
       auteur: this.formAuteurCtrl,
@@ -88,7 +88,6 @@ export class Livres implements OnInit{
       editeur: this.formEditeurCtrl.value,
       collection: this.formCollectionCtrl.value
     };
-
     this.livreService.addLivre(livre).subscribe(() => this.reload());
   }
 
