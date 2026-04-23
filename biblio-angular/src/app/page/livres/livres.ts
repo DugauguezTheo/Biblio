@@ -53,7 +53,7 @@ export class Livres implements OnInit{
     );
 
     this.editeurs = this.editeurService.findAll();
-    this.auteurs = this.auteurService.findAll();
+    this.auteurs = this.auteurService.findAllAuteur();
     this.collections = this.collectionService.findAllCollections();
 
     // Fabrication du formulaire avec le FormBuilder

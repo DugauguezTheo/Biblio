@@ -10,15 +10,23 @@ export class EditeurService {
 
   constructor(private http: HttpClient) { }
 
-  public findAll(): Observable<Editeur[]> {
-    return this.http.get<Editeur[]>("/editeur");
-  }
+  public findAllEditeurs() {
+      return this.http.get<Editeur[]>("/editeur");
+    }
 
-  public add(editeur: Editeur): Observable<Editeur> {
-    return this.http.post<Editeur>("/editeur", editeur);
-  }
+    public findEditeurById(id: number) {
+      return this.http.get<Editeur>(`/editeur/${id}`);
+    }
 
-  public deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(`/editeur/${ id }`);
-  }
+    public addEditeur(editeur: Editeur) {
+      return this.http.post<Editeur>("/editeur", editeur);
+    }
+
+    public deleteEditeurById(id: number) {
+      return this.http.delete(`/editeur/${id}`);
+    }
+
+    public updateEditeur(editeur: Editeur) {
+      return this.http.put(`/editeur/${editeur.id}`, editeur);
+    }
 }

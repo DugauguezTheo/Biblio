@@ -34,7 +34,7 @@
         <div class="col-sm-10">
             <select name="auteur" id="auteur">
               <option value=""> -- Selectionner un auteur --</option>
-              <option *ngFor="let a of auteurs;" formControlName="auteur.nom">{{ a.nom }}</option>
+              <option *ngFor="let a of auteurs | async" formControlName="auteur.nom">{{ a.nom }}</option>
             </select>
         </div>
 
@@ -46,7 +46,7 @@
         <div class="col-sm-10">
             <select name="editeur" id="editeur">
               <option value=""> -- Selectionner un editeur --</option>
-              <option *ngFor="let e of editeurs;" formControlName="editeur.nom">{{ e.nom }}</option>
+              <option *ngFor="let e of editeurs | async" formControlName="editeur.nom">{{ e.nom }}</option>
             </select>
         </div>
 
@@ -58,7 +58,7 @@
         <div class="col-sm-10">
             <select name="collection" id="collection">
               <option value=""> -- Selectionner une collection --</option>
-              <option *ngFor="let c of collections;" formControlName="collection?.nom">{{ c.nom }}</option>
+              <option *ngFor="let c of collections | async" formControlName="collection?.nom">{{ c.nom }}</option>
             </select>
         </div>
     </div>
