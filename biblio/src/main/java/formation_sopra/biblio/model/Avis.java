@@ -3,7 +3,7 @@ package formation_sopra.biblio.model;
 import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 
 /**
  * A Avis.
@@ -28,7 +28,7 @@ public class Avis implements Serializable {
     private String commentaires;
 
     @Column(name = "date")
-    private Instant date;
+    private LocalDate date;
 
     @ManyToOne
     private Livre livre;
@@ -73,16 +73,16 @@ public class Avis implements Serializable {
         this.commentaires = commentaires;
     }
 
-    public Instant getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 
-    public Avis date(Instant date) {
+    public Avis date(LocalDate date) {
         this.setDate(date);
         return this;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

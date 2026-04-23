@@ -49,9 +49,9 @@
     <div class="mb-3 row">
         <label for="livre" class="col-sm-2 col-form-label">Livre</label>
         <div class="col-sm-10">
-            <select name="livre" id="livre" [class.is-invalid]="formLivreCtrl.invalid">
+            <select name="livre" id="livre" formControlName="livre" [class.is-invalid]="formLivreCtrl.invalid">
             <option value=""> -- Selectionner un livre --</option>
-            <option *ngFor="let l of livres | async" formControlName="avis.livre">{{ l.titre }}</option>
+            <option *ngFor="let l of livres | async" [ngValue]="l">{{ l.titre }}</option>
             </select>
         
 
