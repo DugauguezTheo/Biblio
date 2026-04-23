@@ -9,8 +9,8 @@ import { AuteurService } from '../../service/auteur-service';
 @Component({
   selector: 'app-auteur',
   imports: [ CommonModule, ReactiveFormsModule ],
-  templateUrl: './auteur.html',
-  styleUrl: './auteur.css',
+  templateUrl: './auteur-page.html',
+  styleUrl: './auteur-page.css',
 })
 export class AuteurPage {
   private titleService: Title = inject(Title);
