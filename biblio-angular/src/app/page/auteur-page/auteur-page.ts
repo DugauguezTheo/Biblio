@@ -79,6 +79,8 @@ public addOrUpdate(){
   public editer(auteur: Auteur) {
     this.editingAuteur = auteur;
     this.formNomCtrl.setValue(auteur.nom);
+    this.formPrenomCtrl.setValue(auteur.prenom);
+    this.formNationaliteCtrl.setValue(auteur.nationalite);
     this.reload();
   }
 
