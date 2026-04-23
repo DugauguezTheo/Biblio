@@ -58,7 +58,6 @@ export class Editeurs implements OnInit{
 
   public addEditeur() {
     const editeur: Editeur = {
-      id: 0,
       nom: this.formNomCtrl.value,
       pays: this.formPaysCtrl.value
     };

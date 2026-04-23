@@ -1,5 +1,5 @@
 export interface Editeur {
-  id: number;
+  id?: number | undefined;
   nom: string;
   pays: string;
 }

@@ -14,7 +14,7 @@ export class EditeurService {
       return this.http.get<Editeur[]>("/editeur");
     }
 
-    public findEditeurById(id: number) {
+    public findEditeurById(id: number | undefined) {
       return this.http.get<Editeur>(`/editeur/${id}`);
     }
 
@@ -22,7 +22,7 @@ export class EditeurService {
       return this.http.post<Editeur>("/editeur", editeur);
     }
 
-    public deleteEditeurById(id: number) {
+    public deleteEditeurById(id: number | undefined) {
       return this.http.delete(`/editeur/${id}`);
     }
 
