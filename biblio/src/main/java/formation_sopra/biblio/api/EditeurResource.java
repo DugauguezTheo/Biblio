@@ -30,7 +30,7 @@ import formation_sopra.biblio.model.Editeur;
  * REST controller for managing {@link com.formationsopra.biblio.domain.Editeur}.
  */
 @RestController
-@RequestMapping("/api/editeurs")
+@RequestMapping("/api/editeur")
 @Transactional
 public class EditeurResource {
 
@@ -45,7 +45,7 @@ public class EditeurResource {
     }
 
     /**
-     * {@code POST  /editeurs} : Create a new editeur.
+     * {@code POST  /editeur} : Create a new editeur.
      *
      * @param editeur the editeur to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new editeur, or with status {@code 400 (Bad Request)} if the editeur has already an ID.
@@ -58,12 +58,12 @@ public class EditeurResource {
             throw new BadRequestAlertException("A new editeur cannot already have an ID", ENTITY_NAME, "idexists");
         }
         editeur = editeurRepository.save(editeur);
-        return ResponseEntity.created(new URI("/api/editeurs/" + editeur.getId()))
+        return ResponseEntity.created(new URI("/api/editeur/" + editeur.getId()))
             .body(editeur);
     }
 
     /**
-     * {@code PUT  /editeurs/:id} : Updates an existing editeur.
+     * {@code PUT  /editeur/:id} : Updates an existing editeur.
      *
      * @param id the id of the editeur to save.
      * @param editeur the editeur to update.
@@ -93,7 +93,7 @@ public class EditeurResource {
     }
 
     /**
-     * {@code PATCH  /editeurs/:id} : Partial updates given fields of an existing editeur, field will ignore if it is null
+     * {@code PATCH  /editeur/:id} : Partial updates given fields of an existing editeur, field will ignore if it is null
      *
      * @param id the id of the editeur to save.
      * @param editeur the editeur to update.
@@ -137,7 +137,7 @@ public class EditeurResource {
     }
 
     /**
-     * {@code GET  /editeurs} : get all the Editeurs.
+     * {@code GET  /editeur} : get all the Editeurs.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of Editeurs in body.
      */
@@ -148,7 +148,7 @@ public class EditeurResource {
     }
 
     /**
-     * {@code GET  /editeurs/:id} : get the "id" editeur.
+     * {@code GET  /editeur/:id} : get the "id" editeur.
      *
      * @param id the id of the editeur to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the editeur, or with status {@code 404 (Not Found)}.
@@ -161,7 +161,7 @@ public class EditeurResource {
     }
 
     /**
-     * {@code DELETE  /editeurs/:id} : delete the "id" editeur.
+     * {@code DELETE  /editeur/:id} : delete the "id" editeur.
      *
      * @param id the id of the editeur to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.

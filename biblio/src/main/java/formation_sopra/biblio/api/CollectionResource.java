@@ -30,7 +30,7 @@ import formation_sopra.biblio.model.Collection;
  * REST controller for managing {@link com.formationsopra.biblio.domain.Collection}.
  */
 @RestController
-@RequestMapping("/api/collections")
+@RequestMapping("/api/collection")
 @Transactional
 public class CollectionResource {
 
@@ -45,7 +45,7 @@ public class CollectionResource {
     }
 
     /**
-     * {@code POST  /collections} : Create a new collection.
+     * {@code POST  /collection} : Create a new collection.
      *
      * @param collection the collection to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new collection, or with status {@code 400 (Bad Request)} if the collection has already an ID.
@@ -58,12 +58,12 @@ public class CollectionResource {
             throw new BadRequestAlertException("A new collection cannot already have an ID", ENTITY_NAME, "idexists");
         }
         collection = collectionRepository.save(collection);
-        return ResponseEntity.created(new URI("/api/collections/" + collection.getId()))
+        return ResponseEntity.created(new URI("/api/collection/" + collection.getId()))
             .body(collection);
     }
 
     /**
-     * {@code PUT  /collections/:id} : Updates an existing collection.
+     * {@code PUT  /collection/:id} : Updates an existing collection.
      *
      * @param id the id of the collection to save.
      * @param collection the collection to update.
@@ -95,7 +95,7 @@ public class CollectionResource {
     }
 
     /**
-     * {@code PATCH  /collections/:id} : Partial updates given fields of an existing collection, field will ignore if it is null
+     * {@code PATCH  /collection/:id} : Partial updates given fields of an existing collection, field will ignore if it is null
      *
      * @param id the id of the collection to save.
      * @param collection the collection to update.
@@ -138,7 +138,7 @@ public class CollectionResource {
     }
 
     /**
-     * {@code GET  /collections} : get all the Collections.
+     * {@code GET  /collection} : get all the Collections.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of Collections in body.
      */
@@ -149,7 +149,7 @@ public class CollectionResource {
     }
 
     /**
-     * {@code GET  /collections/:id} : get the "id" collection.
+     * {@code GET  /collection/:id} : get the "id" collection.
      *
      * @param id the id of the collection to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the collection, or with status {@code 404 (Not Found)}.
@@ -162,7 +162,7 @@ public class CollectionResource {
     }
 
     /**
-     * {@code DELETE  /collections/:id} : delete the "id" collection.
+     * {@code DELETE  /collection/:id} : delete the "id" collection.
      *
      * @param id the id of the collection to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.

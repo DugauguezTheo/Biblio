@@ -30,7 +30,7 @@ import formation_sopra.biblio.model.Genre;
  * REST controller for managing {@link com.formationsopra.biblio.domain.Genre}.
  */
 @RestController
-@RequestMapping("/api/genres")
+@RequestMapping("/api/genre")
 @Transactional
 public class GenreResource {
 
@@ -46,7 +46,7 @@ public class GenreResource {
     }
 
     /**
-     * {@code POST  /genres} : Create a new genre.
+     * {@code POST  /genre} : Create a new genre.
      *
      * @param genre the genre to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new genre, or with status {@code 400 (Bad Request)} if the genre has already an ID.
@@ -59,12 +59,12 @@ public class GenreResource {
             throw new BadRequestAlertException("A new genre cannot already have an ID", ENTITY_NAME, "idexists");
         }
         genre = genreRepository.save(genre);
-        return ResponseEntity.created(new URI("/api/genres/" + genre.getId()))
+        return ResponseEntity.created(new URI("/api/genre/" + genre.getId()))
             .body(genre);
     }
 
     /**
-     * {@code PUT  /genres/:id} : Updates an existing genre.
+     * {@code PUT  /genre/:id} : Updates an existing genre.
      *
      * @param id the id of the genre to save.
      * @param genre the genre to update.
@@ -94,7 +94,7 @@ public class GenreResource {
     }
 
     /**
-     * {@code PATCH  /genres/:id} : Partial updates given fields of an existing genre, field will ignore if it is null
+     * {@code PATCH  /genre/:id} : Partial updates given fields of an existing genre, field will ignore if it is null
      *
      * @param id the id of the genre to save.
      * @param genre the genre to update.
@@ -134,7 +134,7 @@ public class GenreResource {
     }
 
     /**
-     * {@code GET  /genres} : get all the Genres.
+     * {@code GET  /genre} : get all the Genres.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of Genres in body.
      */
@@ -145,7 +145,7 @@ public class GenreResource {
     }
 
     /**
-     * {@code GET  /genres/:id} : get the "id" genre.
+     * {@code GET  /genre/:id} : get the "id" genre.
      *
      * @param id the id of the genre to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the genre, or with status {@code 404 (Not Found)}.
@@ -158,7 +158,7 @@ public class GenreResource {
     }
 
     /**
-     * {@code DELETE  /genres/:id} : delete the "id" genre.
+     * {@code DELETE  /genre/:id} : delete the "id" genre.
      *
      * @param id the id of the genre to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.

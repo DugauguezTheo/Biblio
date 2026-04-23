@@ -30,7 +30,7 @@ import formation_sopra.biblio.model.Livre;
  * REST controller for managing {@link com.formationsopra.biblio.domain.Livre}.
  */
 @RestController
-@RequestMapping("/api/livres")
+@RequestMapping("/api/livre")
 @Transactional
 public class LivreResource {
 
@@ -45,7 +45,7 @@ public class LivreResource {
     }
 
     /**
-     * {@code POST  /livres} : Create a new livre.
+     * {@code POST  /livre} : Create a new livre.
      *
      * @param livre the livre to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new livre, or with status {@code 400 (Bad Request)} if the livre has already an ID.
@@ -58,12 +58,12 @@ public class LivreResource {
             throw new BadRequestAlertException("A new livre cannot already have an ID", ENTITY_NAME, "idexists");
         }
         livre = livreRepository.save(livre);
-        return ResponseEntity.created(new URI("/api/livres/" + livre.getId()))
+        return ResponseEntity.created(new URI("/api/livre/" + livre.getId()))
             .body(livre);
     }
 
     /**
-     * {@code PUT  /livres/:id} : Updates an existing livre.
+     * {@code PUT  /livre/:id} : Updates an existing livre.
      *
      * @param id the id of the livre to save.
      * @param livre the livre to update.
@@ -93,7 +93,7 @@ public class LivreResource {
     }
 
     /**
-     * {@code PATCH  /livres/:id} : Partial updates given fields of an existing livre, field will ignore if it is null
+     * {@code PATCH  /livre/:id} : Partial updates given fields of an existing livre, field will ignore if it is null
      *
      * @param id the id of the livre to save.
      * @param livre the livre to update.
@@ -136,7 +136,7 @@ public class LivreResource {
     }
 
     /**
-     * {@code GET  /livres} : get all the Livres.
+     * {@code GET  /livre} : get all the Livres.
      *
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of Livres in body.
@@ -152,7 +152,7 @@ public class LivreResource {
     }
 
     /**
-     * {@code GET  /livres/:id} : get the "id" livre.
+     * {@code GET  /livre/:id} : get the "id" livre.
      *
      * @param id the id of the livre to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the livre, or with status {@code 404 (Not Found)}.
@@ -165,7 +165,7 @@ public class LivreResource {
     }
 
     /**
-     * {@code DELETE  /livres/:id} : delete the "id" livre.
+     * {@code DELETE  /livre/:id} : delete the "id" livre.
      *
      * @param id the id of the livre to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
