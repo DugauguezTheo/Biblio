@@ -9,15 +9,23 @@ import { Livre } from '../model/livre';
 export class LivreService {
   constructor(private http: HttpClient) { }
 
-  public findAll(): Observable<Livre[]> {
-    return this.http.get<Livre[]>("/livre");
-  }
+  public findAllLivres() {
+      return this.http.get<Livre[]>("/livre");
+    }
 
-  public add(livre: Livre): Observable<Livre> {
-    return this.http.post<Livre>("/livre", livre);
-  }
+    public findLivreById(id: number) {
+      return this.http.get<Livre>(`/livre/${id}`);
+    }
 
-  public deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(`/livre/${ id }`);
-  }
+    public addLivre(livre: Livre) {
+      return this.http.post<Livre>("/livre", livre);
+    }
+
+    public deleteLivreById(id: number) {
+      return this.http.delete(`/livre/${id}`);
+    }
+
+    public updateLivre(livre: Livre) {
+      return this.http.put(`/livre/${livre.id}`, livre);
+    }
 }
