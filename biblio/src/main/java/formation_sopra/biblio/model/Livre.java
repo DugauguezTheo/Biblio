@@ -30,27 +30,27 @@ public class Livre implements Serializable {
     @Column(name = "annee")
     private String annee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Auteur auteur;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Editeur editeur;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Collection collection;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "rel_livre__genres",
-        joinColumns = @JoinColumn(name = "livre_id"),
-        inverseJoinColumns = @JoinColumn(name = "genres_id")
-    )
-    @JsonIgnoreProperties(value = { "livres" }, allowSetters = true)
-    private Set<Genre> genreses = new HashSet<>();
+    // @ManyToMany(fetch = FetchType.LAZY)
+    // @JoinTable(
+    //     name = "rel_livre__genres",
+    //     joinColumns = @JoinColumn(name = "livre_id"),
+    //     inverseJoinColumns = @JoinColumn(name = "genres_id")
+    // )
+    // @JsonIgnoreProperties(value = { "livres" }, allowSetters = true)
+    // private Set<Genre> genreses = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "livres" }, allowSetters = true)
-    private Avis avis;
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JsonIgnoreProperties(value = { "livres" }, allowSetters = true)
+    // private Avis avis;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -145,41 +145,41 @@ public class Livre implements Serializable {
         return this;
     }
 
-    public Set<Genre> getGenreses() {
-        return this.genreses;
-    }
+    // public Set<Genre> getGenreses() {
+    //     return this.genreses;
+    // }
 
-    public void setGenreses(Set<Genre> genres) {
-        this.genreses = genres;
-    }
+    // public void setGenreses(Set<Genre> genres) {
+    //     this.genreses = genres;
+    // }
 
-    public Livre genreses(Set<Genre> genres) {
-        this.setGenreses(genres);
-        return this;
-    }
+    // public Livre genreses(Set<Genre> genres) {
+    //     this.setGenreses(genres);
+    //     return this;
+    // }
 
-    public Livre addGenres(Genre genre) {
-        this.genreses.add(genre);
-        return this;
-    }
+    // public Livre addGenres(Genre genre) {
+    //     this.genreses.add(genre);
+    //     return this;
+    // }
 
-    public Livre removeGenres(Genre genre) {
-        this.genreses.remove(genre);
-        return this;
-    }
+    // public Livre removeGenres(Genre genre) {
+    //     this.genreses.remove(genre);
+    //     return this;
+    // }
 
-    public Avis getAvis() {
-        return this.avis;
-    }
+    // public Avis getAvis() {
+    //     return this.avis;
+    // }
 
-    public void setAvis(Avis avis) {
-        this.avis = avis;
-    }
+    // public void setAvis(Avis avis) {
+    //     this.avis = avis;
+    // }
 
-    public Livre avis(Avis avis) {
-        this.setAvis(avis);
-        return this;
-    }
+    // public Livre avis(Avis avis) {
+    //     this.setAvis(avis);
+    //     return this;
+    // }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
