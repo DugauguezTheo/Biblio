@@ -1,13 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
 import { Livre } from '../../model/livre';
 import { LivreService } from '../../service/livre-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-livre',
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule
+  ],
   templateUrl: './livres.html',
   styleUrl: './livres.css',
 })
@@ -29,7 +33,7 @@ export class Livres {
   protected formCollectionCtrl !: FormControl;
 
   ngOnInit(): void {
-    this.titleService.setTitle("Liste des matières");
+    this.titleService.setTitle("Liste des livres");
 
     this.livres$ = this.refresh$.pipe(
       startWith(0), // Initialisation => forcer le chargement une première fois
@@ -42,7 +46,7 @@ export class Livres {
     this.formAnneeCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
     this.formAuteurCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
     this.formEditeurCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
-    this.formCollectionCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
+    //this.formCollectionCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
 
     this.formLivre = this.formBuilder.group({
       // Decription des contrôles du formulaire
@@ -62,7 +66,7 @@ export class Livres {
   public addLivre() {
     const livre: Livre = {
       id: 0,
-      libelle: this.formTitreCtrl.value,
+      titre: this.formTitreCtrl.value,
       resume: this.formResumeCtrl.value,
       annee: this.formAnneeCtrl.value,
       auteur: this.formAuteurCtrl.value,
