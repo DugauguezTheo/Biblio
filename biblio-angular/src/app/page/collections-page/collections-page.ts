@@ -45,7 +45,6 @@ export class CollectionsPage implements OnInit {
 
   public addCollection() {
     const collection: Collection = {
-      id: 1,
       nom: this.formNomCtrl.value
     };
     this.collectionService.addCollection(collection).subscribe(() => this.reloadCollections());

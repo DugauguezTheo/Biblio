@@ -20,7 +20,7 @@ export class CollectionService {
     return this.http.post<Collection>("/collection", collection);
   }
 
-  public deleteCollectionById(id: number) {
+  public deleteCollectionById(id: number | undefined) {
     return this.http.delete(`/collection/${id}`);
   }
 
