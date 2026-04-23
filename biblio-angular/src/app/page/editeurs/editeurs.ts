@@ -15,13 +15,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './editeurs.html',
   styleUrl: './editeurs.css',
 })
-export class Editeurs implements OnInit{
-
+export class Editeurs implements OnInit {
   private titleService: Title = inject(Title);
   private editeurService: EditeurService = inject(EditeurService);
   private formBuilder: FormBuilder = inject(FormBuilder);
-  // private router: Router = inject(Router);
 
+  protected editingEditeur?: Editeur | null;
   protected editeurs$!: Observable<Editeur[]>;
   private refresh$: Subject<void> = new Subject<void>();
 
@@ -30,7 +29,7 @@ export class Editeurs implements OnInit{
   protected formPaysCtrl !: FormControl;
 
   ngOnInit(): void {
-    this.titleService.setTitle("Liste des matières");
+    this.titleService.setTitle("Liste des éditeurs");
 
     this.editeurs$ = this.refresh$.pipe(
       startWith(0), // Initialisation => forcer le chargement une première fois
@@ -38,8 +37,8 @@ export class Editeurs implements OnInit{
     );
 
     // Fabrication du formulaire avec le FormBuilder
-    this.formNomCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
-    this.formPaysCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
+    this.formNomCtrl = this.formBuilder.control("", Validators.required);
+    this.formPaysCtrl = this.formBuilder.control("", Validators.required);
     this.formEditeur = this.formBuilder.group({
       // Decription des contrôles du formulaire
       nom: this.formNomCtrl,
@@ -56,16 +55,37 @@ export class Editeurs implements OnInit{
     // });
   }
 
-  public addEditeur() {
+  public deleteEditeur(editeur: Editeur) {
+    if (editeur.id != undefined) {
+      this.editeurService.deleteEditeurById(editeur.id).subscribe(() => this.reload());
+    }
+  }
+
+  public ajouterOuModifierEditeur() {
     const editeur: Editeur = {
       nom: this.formNomCtrl.value,
-      pays: this.formPaysCtrl.value
-    };
+      pays: this.formPaysCtrl.value,
+      id: this.editingEditeur?.id
+    }
 
-    this.editeurService.addEditeur(editeur).subscribe(() => this.reload());
+    if (this.editingEditeur) {
+      this.editeurService.updateEditeur(editeur).subscribe(() => {
+        this.editingEditeur = null;
+        this.formEditeur.reset();
+        this.reload();
+      })
+    }
+    else {
+      this.editeurService.addEditeur(editeur).subscribe(() => this.reload());
+    }
   }
 
-  public deleteEditeur(editeur: Editeur) {
-    this.editeurService.deleteEditeurById(editeur.id).subscribe(() => this.reload());
+  public editerEditeur(editeur: Editeur) {
+    this.editingEditeur = editeur;
+    this.formNomCtrl.setValue(editeur.nom);
+    this.formPaysCtrl.setValue(editeur.pays);
+    this.reload();
   }
+
+
 }

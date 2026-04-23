@@ -30,6 +30,7 @@ export class Livres implements OnInit{
   protected collectionService: CollectionService = inject(CollectionService);
   private formBuilder: FormBuilder = inject(FormBuilder);
 
+  protected editingLivre ?: Livre | null;
   protected livres$!: Observable<Livre[]>;
   protected editeurs!: Observable<Editeur[]>;
   protected auteurs!: Observable<Auteur[]>;
@@ -79,16 +80,38 @@ export class Livres implements OnInit{
     this.refresh$.next();
   }
 
-  public addLivre() {
+  public addOrUpdateLivre() {
     const livre: Livre = {
       titre: this.formTitreCtrl.value,
       resume: this.formResumeCtrl.value,
       annee: this.formAnneeCtrl.value,
       auteur: this.formAuteurCtrl.value,
       editeur: this.formEditeurCtrl.value,
-      collection: this.formCollectionCtrl.value
+      collection: this.formCollectionCtrl.value,
+      id: this.editingLivre?.id
     };
-    this.livreService.addLivre(livre).subscribe(() => this.reload());
+
+    if(this.editingLivre){
+      this.livreService.updateLivre(livre).subscribe(() => {
+        this.editingLivre = null;
+        this.formLivre.reset();
+        this.reload();
+      })
+    }
+    else{
+      this.livreService.addLivre(livre).subscribe(() => this.reload());
+    }
+  }
+
+  public editerLivre(livre : Livre){
+    this.editingLivre = livre;
+    this.formAnneeCtrl.setValue(livre.annee);
+    this.formAuteurCtrl.setValue(livre.auteur);
+    this.formCollectionCtrl.setValue(livre.collection);
+    this.formEditeurCtrl.setValue(livre.editeur);
+    this.formResumeCtrl.setValue(livre.resume);
+    this.formTitreCtrl.setValue(livre.titre);
+    this.reload();
   }
 
   public deleteLivre(livre: Livre) {

@@ -45,7 +45,6 @@ export class AvisPage implements OnInit{
   protected notes: number[] = [1, 2, 3, 4, 5];
   protected livres!: Observable<Livre[]>;
 
-
   ngOnInit(): void {
 
     this.titleService.setTitle("Avis");   
@@ -60,7 +59,7 @@ export class AvisPage implements OnInit{
     this.formNoteCtrl = this.formBuilder.control(0, Validators.min(1));
     this.formCommentaireCtrl = this.formBuilder.control("", Validators.required);
     this.formDateCtrl = this.formBuilder.control('', Validators.required);
-    this.formLivreCtrl = this.formBuilder.control('', Validators.required);
+    this.formLivreCtrl = this.formBuilder.control(null, Validators.required);
 
     this.formAvis = this.formBuilder.group({
       // Description des contrôles du formulaire
@@ -69,7 +68,6 @@ export class AvisPage implements OnInit{
       date: this.formDateCtrl,
       livre: this.formLivreCtrl
     });
-
 
     //FindAll()
     this.avisService.findAll();
@@ -96,6 +94,9 @@ export class AvisPage implements OnInit{
       livre: this.formLivreCtrl.value}
   
       this.avisService.add(avis).subscribe(() => {this.reload();});
+
+      //Reset the form
+      this.formAvis.reset();
     }
 
 
