@@ -30,6 +30,7 @@
             <td>{{ collection.id }}</td>
             <td>{{ collection.nom }}</td>
             <td>
+                <button class="btn btn-warning" (click)="updateCollection(collection)">Modifier</button>
                 <button class="btn btn-danger" (click)="deleteCollection(collection)">Supprimer</button>
             </td>
         </tr>
