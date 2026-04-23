@@ -114,6 +114,18 @@ export class Livres implements OnInit{
     this.reload();
   }
 
+  public compareCollection(c1: Collection, c2: Collection): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+
+  public compareAuteur(a1: Auteur, a2: Auteur): boolean {
+    return a1 && a2 ? a1.id === a2.id : a1 === a2;
+  }
+
+  public compareEditeur(e1: Editeur, e2: Editeur): boolean {
+    return e1 && e2 ? e1.id === e2.id : e1 === e2;
+  }
+
   public deleteLivre(livre: Livre) {
     this.livreService.deleteLivreById(livre.id).subscribe(() => this.reload());
   }
