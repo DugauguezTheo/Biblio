@@ -57,12 +57,12 @@ export class Livres implements OnInit{
     this.collections = this.collectionService.findAllCollections();
 
     // Fabrication du formulaire avec le FormBuilder
-    this.formTitreCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
-    this.formResumeCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
-    this.formAnneeCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);
+    this.formTitreCtrl = this.formBuilder.control("", Validators.required);
+    this.formResumeCtrl = this.formBuilder.control("", Validators.required);
+    this.formAnneeCtrl = this.formBuilder.control("", Validators.required);
     this.formAuteurCtrl = this.formBuilder.control(null, Validators.required);
     this.formEditeurCtrl = this.formBuilder.control(null, Validators.required);
-    this.formCollectionCtrl = this.formBuilder.control(null, Validators.required);
+    this.formCollectionCtrl = this.formBuilder.control(null, Validators.nullValidator);
 
     this.formLivre = this.formBuilder.group({
       // Decription des contrôles du formulaire

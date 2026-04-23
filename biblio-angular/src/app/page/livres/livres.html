@@ -8,25 +8,25 @@
             <input type="text" class="form-control" id="titre" formControlName="titre" />
         </div>
 
-        <div *ngIf="formTitreCtrl.hasError('required')">Le titre est obligatoire</div>
+        <div *ngIf="formTitreCtrl.hasError('required')" class="invalid-feedback">Le titre est obligatoire</div>
     </div>
 
     <div class="mb-3 row">
         <label for="resume" class="col-sm-2 col-form-label">Résumé</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="resume" formControlName="resume" />
+            <div *ngIf="formResumeCtrl.hasError('required')" class="invalid-feedback">Le résumé est obligatoire</div>
         </div>
 
-        <div *ngIf="formResumeCtrl.hasError('required')">Le résumé est obligatoire</div>
     </div>
 
     <div class="mb-3 row">
         <label for="annee" class="col-sm-2 col-form-label">Année</label>
         <div class="col-sm-10">
             <input type="number" class="form-control" id="annee" formControlName="annee" />
+            <div *ngIf="formAnneeCtrl.hasError('required')" class="invalid-feedback">L'année est obligatoire</div>
         </div>
 
-        <div *ngIf="formAnneeCtrl.hasError('required')">L'année est obligatoire</div>
     </div>
 
     <div class="mb-3 row">
@@ -36,9 +36,9 @@
               <option [ngValue]="null"> -- Selectionner un auteur --</option>
               <option *ngFor="let a of auteurs | async" [ngValue]="a">{{ a.nom }}</option>
             </select>
+            <div *ngIf="formAuteurCtrl.hasError('required')" class="invalid-feedback">L'auteur est obligatoire</div>
         </div>
 
-        <div *ngIf="formAuteurCtrl.hasError('required')">L'auteur est obligatoire</div>
     </div>
 
     <div class="mb-3 row">
@@ -48,9 +48,9 @@
               <option [ngValue]="null"> -- Selectionner un editeur --</option>
               <option *ngFor="let e of editeurs | async" [ngValue]="e">{{ e.nom }}</option>
             </select>
+            <div *ngIf="formEditeurCtrl.hasError('required')" class="invalid-feedback">L'éditeur est obligatoire</div>
         </div>
 
-        <div *ngIf="formEditeurCtrl.hasError('required')">L'éditeur est obligatoire</div>
     </div>
 
     <div class="mb-3 row">
