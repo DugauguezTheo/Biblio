@@ -5,16 +5,17 @@
     <div class="mb-3 row">
         <label for="titre" class="col-sm-2 col-form-label">Titre</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="titre" formControlName="titre" />
+            <input type="text" class="form-control" id="titre" formControlName="titre" [class.is-invalid]="formTitreCtrl.invalid"/>
+            <div *ngIf="formTitreCtrl.hasError('required')" class="invalid-feedback">Le titre est obligatoire</div>
         </div>
 
-        <div *ngIf="formTitreCtrl.hasError('required')" class="invalid-feedback">Le titre est obligatoire</div>
+
     </div>
 
     <div class="mb-3 row">
         <label for="resume" class="col-sm-2 col-form-label">Résumé</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="resume" formControlName="resume" />
+            <input type="text" class="form-control" id="resume" formControlName="resume" [class.is-invalid]="formResumeCtrl.invalid" />
             <div *ngIf="formResumeCtrl.hasError('required')" class="invalid-feedback">Le résumé est obligatoire</div>
         </div>
 
@@ -23,7 +24,7 @@
     <div class="mb-3 row">
         <label for="annee" class="col-sm-2 col-form-label">Année</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" id="annee" formControlName="annee" />
+            <input type="number" class="form-control" id="annee" formControlName="annee" [class.is-invalid]="formAnneeCtrl.invalid" />
             <div *ngIf="formAnneeCtrl.hasError('required')" class="invalid-feedback">L'année est obligatoire</div>
         </div>
 
@@ -32,7 +33,7 @@
     <div class="mb-3 row">
         <label for="auteur" class="col-sm-2 col-form-label">Auteur</label>
         <div class="col-sm-10">
-            <select name="auteur" id="auteur" formControlName="auteur">
+            <select name="auteur" id="auteur" formControlName="auteur" [class.is-invalid]="formAuteurCtrl.invalid">
               <option [ngValue]="null"> -- Selectionner un auteur --</option>
               <option *ngFor="let a of auteurs | async" [ngValue]="a">{{ a.nom }}</option>
             </select>
@@ -44,7 +45,7 @@
     <div class="mb-3 row">
         <label for="editeur" class="col-sm-2 col-form-label">Éditeur</label>
         <div class="col-sm-10">
-            <select name="editeur" id="editeur" formControlName="editeur">
+            <select name="editeur" id="editeur" formControlName="editeur" [class.is-invalid]="formEditeurCtrl.invalid">
               <option [ngValue]="null"> -- Selectionner un editeur --</option>
               <option *ngFor="let e of editeurs | async" [ngValue]="e">{{ e.nom }}</option>
             </select>
