@@ -17,6 +17,7 @@ export class AuteurPage {
   private auteurService: AuteurService = inject(AuteurService);
   private formBuilder: FormBuilder = inject(FormBuilder);
 
+  protected editingAuteur ?: Auteur | null;
   protected auteurs$!: Observable<Auteur[]>;
   private refresh$: Subject<void> = new Subject<void>();
 
@@ -55,19 +56,35 @@ export class AuteurPage {
     // });
   }
 
-  public addAuteur() {
-    const auteur: Auteur = {
+public addOrUpdate(){
+    const auteur : Auteur = {
+      id: this.editingAuteur?.id,
       nom: this.formNomCtrl.value,
       prenom: this.formPrenomCtrl.value,
-      nationalite: this.formNationaliteCtrl.value,
-  };
+      nationalite: this.formNationaliteCtrl.value
+    }
 
-  this.auteurService.addAuteur(auteur).subscribe(() => this.reload());
+    if(this.editingAuteur){
+    this.auteurService.updateAuteur(auteur).subscribe(() => {
+        this.editingAuteur= null;
+        this.formAuteur.reset();
+        this.reload();
+      })
+    }
+    else{
+      this.auteurService.addAuteur(auteur).subscribe(() => this.reload());
+    }
+  }
+
+  public editer(auteur: Auteur) {
+    this.editingAuteur = auteur;
+    this.formNomCtrl.setValue(auteur.nom);
+    this.reload();
   }
 
   public deleteAuteur(auteur: Auteur) {
-    this.auteurService.deleteAuteurById(auteur.id).subscribe(() => this.reload());
+    if (auteur.id!=undefined) {
+        this.auteurService.deleteAuteurById(auteur.id).subscribe(() => this.reload());
   }
 }
-
-
+}

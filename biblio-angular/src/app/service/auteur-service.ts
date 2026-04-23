@@ -21,7 +21,7 @@ export class AuteurService {
     return this.http.post<Auteur>("/auteur", auteur);
   }
 
-  public updateCollection(auteur: Auteur) {
+  public updateAuteur(auteur: Auteur) {
       return this.http.put(`/auteur/${auteur.id}`, auteur);
     }
 
