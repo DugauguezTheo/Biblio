@@ -3,6 +3,8 @@ import { AccueilPage } from './page/accueil-page/accueil-page';
 import { CollectionsPage } from './page/collections-page/collections-page';
 import { Livres } from './page/livres/livres';
 import { authGuard } from './guard/auth-guard';
+import { Editeurs } from './page/editeurs/editeurs';
+import { AuteurPage } from './page/auteur-page/auteur';
 
 export const routes: Routes = [
 
