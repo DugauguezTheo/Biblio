@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Collection } from './collection';
+import { Navigation } from './navigation';
 
-describe('Collection', () => {
-  let component: Collection;
-  let fixture: ComponentFixture<Collection>;
+describe('Navigation', () => {
+  let component: Navigation;
+  let fixture: ComponentFixture<Navigation>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Collection]
-    })
-    .compileComponents();
+      imports: [Navigation],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(Collection);
+    fixture = TestBed.createComponent(Navigation);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
