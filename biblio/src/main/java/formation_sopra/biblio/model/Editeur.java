@@ -5,7 +5,9 @@ import java.io.Serial;
 import java.io.Serializable;
 
 
-@Schema(description = "Task entity.\n@author The JHipster team.")
+/**
+ * A Editeur.
+ */
 @Entity
 @Table(name = "editeur")
 @SuppressWarnings("common-java:DuplicatedBlocks")

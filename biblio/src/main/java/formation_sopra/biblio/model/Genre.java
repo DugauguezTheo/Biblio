@@ -1,7 +1,6 @@
 package formation_sopra.biblio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -9,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@Schema(description = "not an ignored comment")
+
 @Entity
 @Table(name = "genre")
 @SuppressWarnings("common-java:DuplicatedBlocks")

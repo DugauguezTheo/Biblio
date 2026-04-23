@@ -30,7 +30,7 @@ export class AuteurPage {
 
     this.auteurs$ = this.refresh$.pipe(
       startWith(0), // Initialisation => forcer le chargement une première fois
-      switchMap(() => this.auteurService.findAll()) // Transformer au moment du next()
+      switchMap(() => this.auteurService.findAllAuteur()) // Transformer au moment du next()
     );
 
     // Fabrication du formulaire avec le FormBuilder
@@ -63,11 +63,11 @@ export class AuteurPage {
       nationalite: this.formNationaliteCtrl.value,
   };
 
-  this.auteurService.add(auteur).subscribe(() => this.reload());
+  this.auteurService.addAuteur(auteur).subscribe(() => this.reload());
   }
 
   public deleteAuteur(auteur: Auteur) {
-    this.auteurService.deleteById(auteur.id).subscribe(() => this.reload());
+    this.auteurService.deleteAuteurById(auteur.id).subscribe(() => this.reload());
   }
 }
 

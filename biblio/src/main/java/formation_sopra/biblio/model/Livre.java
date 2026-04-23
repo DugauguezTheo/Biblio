@@ -1,17 +1,13 @@
 package formation_sopra.biblio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * The Employee entity.
- */
-@Schema(description = "The Employee entity.")
+
 @Entity
 @Table(name = "livre")
 @SuppressWarnings("common-java:DuplicatedBlocks")
