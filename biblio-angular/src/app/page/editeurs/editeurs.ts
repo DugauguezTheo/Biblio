@@ -34,7 +34,7 @@ export class Editeurs implements OnInit{
 
     this.editeurs$ = this.refresh$.pipe(
       startWith(0), // Initialisation => forcer le chargement une première fois
-      switchMap(() => this.editeurService.findAll()) // Transformer au moment du next()
+      switchMap(() => this.editeurService.findAllEditeurs()) // Transformer au moment du next()
     );
 
     // Fabrication du formulaire avec le FormBuilder
@@ -63,10 +63,10 @@ export class Editeurs implements OnInit{
       pays: this.formPaysCtrl.value
     };
 
-    this.editeurService.add(editeur).subscribe(() => this.reload());
+    this.editeurService.addEditeur(editeur).subscribe(() => this.reload());
   }
 
   public deleteEditeur(editeur: Editeur) {
-    this.editeurService.deleteById(editeur.id).subscribe(() => this.reload());
+    this.editeurService.deleteEditeurById(editeur.id).subscribe(() => this.reload());
   }
 }

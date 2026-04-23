@@ -49,10 +49,10 @@ export class Livres implements OnInit{
 
     this.livres$ = this.refresh$.pipe(
       startWith(0), // Initialisation => forcer le chargement une première fois
-      switchMap(() => this.livreService.findAll()) // Transformer au moment du next()
+      switchMap(() => this.livreService.findAllLivres()) // Transformer au moment du next()
     );
 
-    this.editeurs = this.editeurService.findAll();
+    this.editeurs = this.editeurService.findAllEditeurs();
     this.auteurs = this.auteurService.findAllAuteur();
     this.collections = this.collectionService.findAllCollections();
 
@@ -90,10 +90,10 @@ export class Livres implements OnInit{
       collection: this.formCollectionCtrl.value
     };
 
-    this.livreService.add(livre).subscribe(() => this.reload());
+    this.livreService.addLivre(livre).subscribe(() => this.reload());
   }
 
   public deleteLivre(livre: Livre) {
-    this.livreService.deleteById(livre.id).subscribe(() => this.reload());
+    this.livreService.deleteLivreById(livre.id).subscribe(() => this.reload());
   }
 }
