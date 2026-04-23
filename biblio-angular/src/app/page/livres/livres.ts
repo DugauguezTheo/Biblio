@@ -81,7 +81,6 @@ export class Livres implements OnInit{
 
   public addLivre() {
     const livre: Livre = {
-      id: 0,
       titre: this.formTitreCtrl.value,
       resume: this.formResumeCtrl.value,
       annee: this.formAnneeCtrl.value,
