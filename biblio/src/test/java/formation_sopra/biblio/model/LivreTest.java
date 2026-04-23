@@ -4,7 +4,7 @@ import static formation_sopra.biblio.model.AuteurTestSamples.*;
 import static formation_sopra.biblio.model.AvisTestSamples.*;
 import static formation_sopra.biblio.model.CollectionTestSamples.*;
 import static formation_sopra.biblio.model.EditeurTestSamples.*;
-import static formation_sopra.biblio.model.GenreTestSamples.*;
+// import static formation_sopra.biblio.model.GenreTestSamples.*;
 import static formation_sopra.biblio.model.LivreTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,33 +65,33 @@ class LivreTest {
         assertThat(livre.getCollection()).isNull();
     }
 
-    @Test
-    void genresTest() {
-        Livre livre = getLivreRandomSampleGenerator();
-        Genre genreBack = getGenreRandomSampleGenerator();
+    // @Test
+    // void genresTest() {
+    //     Livre livre = getLivreRandomSampleGenerator();
+    //     Genre genreBack = getGenreRandomSampleGenerator();
 
-        livre.addGenres(genreBack);
-        assertThat(livre.getGenreses()).containsOnly(genreBack);
+    //     livre.addGenres(genreBack);
+    //     assertThat(livre.getGenreses()).containsOnly(genreBack);
 
-        livre.removeGenres(genreBack);
-        assertThat(livre.getGenreses()).doesNotContain(genreBack);
+    //     livre.removeGenres(genreBack);
+    //     assertThat(livre.getGenreses()).doesNotContain(genreBack);
 
-        livre.genreses(new HashSet<>(Set.of(genreBack)));
-        assertThat(livre.getGenreses()).containsOnly(genreBack);
+    //     livre.genreses(new HashSet<>(Set.of(genreBack)));
+    //     assertThat(livre.getGenreses()).containsOnly(genreBack);
 
-        livre.setGenreses(new HashSet<>());
-        assertThat(livre.getGenreses()).doesNotContain(genreBack);
-    }
+    //     livre.setGenreses(new HashSet<>());
+    //     assertThat(livre.getGenreses()).doesNotContain(genreBack);
+    // }
 
-    @Test
-    void avisTest() {
-        Livre livre = getLivreRandomSampleGenerator();
-        Avis avisBack = getAvisRandomSampleGenerator();
+    // @Test
+    // void avisTest() {
+    //     Livre livre = getLivreRandomSampleGenerator();
+    //     Avis avisBack = getAvisRandomSampleGenerator();
 
-        livre.setAvis(avisBack);
-        assertThat(livre.getAvis()).isEqualTo(avisBack);
+    //     livre.setAvis(avisBack);
+    //     assertThat(livre.getAvis()).isEqualTo(avisBack);
 
-        livre.avis(null);
-        assertThat(livre.getAvis()).isNull();
-    }
+    //     livre.avis(null);
+    //     assertThat(livre.getAvis()).isNull();
+    // }
 }

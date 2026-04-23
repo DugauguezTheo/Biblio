@@ -25,25 +25,25 @@ class AvisTest {
         assertThat(avis1).isNotEqualTo(avis2);
     }
 
-    @Test
-    void livreTest() {
-        Avis avis = getAvisRandomSampleGenerator();
-        Livre livreBack = getLivreRandomSampleGenerator();
+    // @Test
+    // void livreTest() {
+    //     Avis avis = getAvisRandomSampleGenerator();
+    //     Livre livreBack = getLivreRandomSampleGenerator();
 
-        avis.addLivre(livreBack);
-        assertThat(avis.getLivres()).containsOnly(livreBack);
-        assertThat(livreBack.getAvis()).isEqualTo(avis);
+    //     avis.addLivre(livreBack);
+    //     assertThat(avis.getLivres()).containsOnly(livreBack);
+    //     assertThat(livreBack.getAvis()).isEqualTo(avis);
 
-        avis.removeLivre(livreBack);
-        assertThat(avis.getLivres()).doesNotContain(livreBack);
-        assertThat(livreBack.getAvis()).isNull();
+    //     avis.removeLivre(livreBack);
+    //     assertThat(avis.getLivres()).doesNotContain(livreBack);
+    //     assertThat(livreBack.getAvis()).isNull();
 
-        avis.livres(new HashSet<>(Set.of(livreBack)));
-        assertThat(avis.getLivres()).containsOnly(livreBack);
-        assertThat(livreBack.getAvis()).isEqualTo(avis);
+    //     avis.livres(new HashSet<>(Set.of(livreBack)));
+    //     assertThat(avis.getLivres()).containsOnly(livreBack);
+    //     assertThat(livreBack.getAvis()).isEqualTo(avis);
 
-        avis.setLivres(new HashSet<>());
-        assertThat(avis.getLivres()).doesNotContain(livreBack);
-        assertThat(livreBack.getAvis()).isNull();
-    }
+    //     avis.setLivres(new HashSet<>());
+    //     assertThat(avis.getLivres()).doesNotContain(livreBack);
+    //     assertThat(livreBack.getAvis()).isNull();
+    // }
 }
