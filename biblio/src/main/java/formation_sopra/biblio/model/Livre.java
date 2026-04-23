@@ -1,6 +1,5 @@
 package formation_sopra.biblio.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;

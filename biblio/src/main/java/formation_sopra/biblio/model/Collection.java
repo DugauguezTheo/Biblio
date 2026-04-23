@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * A Collection.
@@ -12,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "collection")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Collection implements Serializable {
 
     @Serial

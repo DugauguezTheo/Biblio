@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * A Auteur.
@@ -12,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "auteur")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Auteur implements Serializable {
 
     @Serial
