@@ -1,7 +1,7 @@
 import { Livre } from "./livre";
 
 export interface Avis {
-    id: number;
+    id?: number;
     note: number;
     commentaire: string;
     date: Date;

@@ -13,7 +13,7 @@ export class LivreService {
       return this.http.get<Livre[]>("/livre");
     }
 
-    public findLivreById(id: number) {
+    public findLivreById(id: number | undefined) {
       return this.http.get<Livre>(`/livre/${id}`);
     }
 
@@ -21,7 +21,7 @@ export class LivreService {
       return this.http.post<Livre>("/livre", livre);
     }
 
-    public deleteLivreById(id: number) {
+    public deleteLivreById(id: number | undefined) {
       return this.http.delete(`/livre/${id}`);
     }
 

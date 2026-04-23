@@ -83,20 +83,31 @@ export class AvisPage implements OnInit{
   }
 
 
-  addAvis(){
+  //Fonctions
+  private reload() {
+    this.refresh$.next();
+  }
+
+  public addAvis(){
     const avis: Avis = {
-      id: 0,
       note: this.formNoteCtrl.value,
       commentaire: this.formCommentaireCtrl.value,
       date: this.formDateCtrl.value,
       livre: this.formLivreCtrl.value}
   
-      this.avisService.add(avis);
+      this.avisService.add(avis).subscribe(() => {this.reload();});
     }
 
-  deleteAvis(avis: Avis){
-    this.avisService.deleteById(avis.id);
+
+  public deleteAvis(avis: Avis){
+    this.avisService.deleteById(avis.id).subscribe(() => {this.reload();});
 
   }
+
+
+  public updateAvis(avis: Avis) {
+      this.avisService.update(avis).subscribe(() => {this.reload();});
+      
+    }
 
 }

@@ -3,7 +3,7 @@ import { Collection } from "./collection";
 import { Editeur } from "./editeur";
 
 export interface Livre {
-  id : number;
+  id ?: number;
   titre: string;
   resume: string;
   annee: number;
