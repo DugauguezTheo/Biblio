@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './livres.html',
   styleUrl: './livres.css',
 })
-export class Livres {
+export class Livres implements OnInit{
 
   private titleService: Title = inject(Title);
   private livreService: LivreService = inject(LivreService);

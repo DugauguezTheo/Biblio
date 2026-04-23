@@ -1,0 +1,50 @@
+<h1>Liste des Éditeurs</h1>
+
+<form (submit)="addEditeur()" [formGroup]="formEditeur">
+    <div class="mb-3 row">
+        <label for="nom" class="col-sm-2 col-form-label">Nom</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="nom" formControlName="nom" />
+        </div>
+
+        <div *ngIf="formNomCtrl.hasError('required')">Le nom est obligatoire</div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="pays" class="col-sm-2 col-form-label">Pays</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="pays" formControlName="pays" />
+        </div>
+
+        <div *ngIf="formPaysCtrl.hasError('required')">Le pays est obligatoire</div>
+    </div>
+
+    <div>
+        <input [disabled]="formEditeur.invalid" type="submit" class="btn btn-success" value="Ajouter" />
+    </div>
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Pays</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let editeur of editeurs$ | async">
+            <td>{{ editeur.id }}</td>
+            <td>{{ editeur.nom }}</td>
+            <td>{{ editeur.pays }}</td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteEditeur(editeur)">Supprimer</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

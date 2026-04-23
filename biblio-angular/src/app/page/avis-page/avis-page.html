@@ -1,0 +1,64 @@
+<h1>Liste des avis</h1>
+
+<form (submit)="addAvis()" [formGroup]="formAvis">
+
+    <!-- Note -->
+    <div style="display: flex; flex-direction: column; align-items: flex-start; margin-right: 20px;">
+        <div>
+            <label for="note">Note</label>
+
+            <ul class="rating-list" *ngFor="let star of notes">
+                <li (click)="countStar(star)"
+                    [ngClass]="{'selected': (star <= selectedStar)}">
+                        ☆
+                </li>             
+            </ul>
+        </div>
+
+        <!-- Commentaire -->
+        <div style="display: inline-block;">
+            <label for="commentaire">Commentaire</label>
+            <input type="text" class="form-control" formControlName="commentaire"/>
+            
+        </div>
+
+        <!-- Date -->
+        <div >
+            <label for="date">Date</label>
+            <input type="date" class="form-control" formControlName="date" />
+            
+        </div>
+
+
+        <div style="margin-top: 2%;"> 
+            <input [disabled]="formAvis.invalid" type="submit" class="btn btn-success" value="Ajouter" />
+        </div>
+    </div>
+
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Note</th>
+            <th>Commentaire</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let avis of listeAvis$ | async">
+            <td>{{ avis.id }}</td>
+            <td>{{ avis.note }}</td>
+            <td>{{ avis.commentaire }}</td>
+            <td>{{ avis.date }}</td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteAvis(avis)">Supprimer</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

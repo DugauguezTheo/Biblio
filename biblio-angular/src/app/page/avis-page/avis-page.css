@@ -1,0 +1,22 @@
+ .rating-list li {
+  color: #ddd;
+  /* padding: 10px 5px; */
+  font-size: 30px;
+  cursor: pointer;
+
+}
+
+.rating-list li:hover,
+.rating-list li:hover ~ li {
+  color: #ffd700;
+}
+
+.rating-list {
+    
+  display: inline-block;
+  list-style: none;
+}
+
+.rating-list li.selected {
+    color: #ffd700;
+}
