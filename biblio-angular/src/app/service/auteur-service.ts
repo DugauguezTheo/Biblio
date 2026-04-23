@@ -9,7 +9,7 @@ import { Auteur } from '../model/auteur';
 export class AuteurService {
     constructor(private http: HttpClient) { }
 
-  public findAuteurById(id: number) {
+  public findAuteurById(id: number | undefined) {
       return this.http.get<Auteur>(`/auteur/${id}`);
     }
 
@@ -25,7 +25,7 @@ export class AuteurService {
       return this.http.put(`/auteur/${auteur.id}`, auteur);
     }
 
-  public deleteAuteurById(id: number): Observable<void> {
+  public deleteAuteurById(id: number | undefined): Observable<void> {
     return this.http.delete<void>(`/auteur/${ id }`);
   }
 }

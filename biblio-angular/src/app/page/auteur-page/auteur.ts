@@ -57,7 +57,6 @@ export class AuteurPage {
 
   public addAuteur() {
     const auteur: Auteur = {
-      id: 0,
       nom: this.formNomCtrl.value,
       prenom: this.formPrenomCtrl.value,
       nationalite: this.formNationaliteCtrl.value,

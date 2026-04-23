@@ -30,7 +30,7 @@ import formation_sopra.biblio.model.Auteur;
  * REST controller for managing {@link com.formationsopra.biblio.domain.Auteur}.
  */
 @RestController
-@RequestMapping("/api/auteurs")
+@RequestMapping("/api/auteur")
 @Transactional
 public class AuteurResource {
 
@@ -45,7 +45,7 @@ public class AuteurResource {
     }
 
     /**
-     * {@code POST  /auteurs} : Create a new auteur.
+     * {@code POST  /auteur} : Create a new auteur.
      *
      * @param auteur the auteur to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new auteur, or with status {@code 400 (Bad Request)} if the auteur has already an ID.
@@ -58,12 +58,12 @@ public class AuteurResource {
             throw new BadRequestAlertException("A new auteur cannot already have an ID", ENTITY_NAME, "idexists");
         }
         auteur = auteurRepository.save(auteur);
-        return ResponseEntity.created(new URI("/api/auteurs/" + auteur.getId()))
+        return ResponseEntity.created(new URI("/api/auteur/" + auteur.getId()))
             .body(auteur);
     }
 
     /**
-     * {@code PUT  /auteurs/:id} : Updates an existing auteur.
+     * {@code PUT  /auteur/:id} : Updates an existing auteur.
      *
      * @param id the id of the auteur to save.
      * @param auteur the auteur to update.
@@ -93,7 +93,7 @@ public class AuteurResource {
     }
 
     /**
-     * {@code PATCH  /auteurs/:id} : Partial updates given fields of an existing auteur, field will ignore if it is null
+     * {@code PATCH  /auteur/:id} : Partial updates given fields of an existing auteur, field will ignore if it is null
      *
      * @param id the id of the auteur to save.
      * @param auteur the auteur to update.
@@ -137,7 +137,7 @@ public class AuteurResource {
     }
 
     /**
-     * {@code GET  /auteurs} : get all the Auteurs.
+     * {@code GET  /auteur} : get all the Auteurs.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of Auteurs in body.
      */
@@ -148,7 +148,7 @@ public class AuteurResource {
     }
 
     /**
-     * {@code GET  /auteurs/:id} : get the "id" auteur.
+     * {@code GET  /auteur/:id} : get the "id" auteur.
      *
      * @param id the id of the auteur to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the auteur, or with status {@code 404 (Not Found)}.
@@ -162,7 +162,7 @@ public class AuteurResource {
     }
 
     /**
-     * {@code DELETE  /auteurs/:id} : delete the "id" auteur.
+     * {@code DELETE  /auteur/:id} : delete the "id" auteur.
      *
      * @param id the id of the auteur to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
