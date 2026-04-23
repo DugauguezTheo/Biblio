@@ -9,8 +9,8 @@ import { CollectionService } from '../../service/collection-service';
 @Component({
   selector: 'app-collections-page',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './collections.html',
-  styleUrl: './collections.css',
+  templateUrl: './collections-page.html',
+  styleUrl: './collections-page.css',
 })
 export class CollectionsPage implements OnInit {
   private titleService: Title = inject(Title);
@@ -51,8 +51,11 @@ export class CollectionsPage implements OnInit {
     this.collectionService.addCollection(collection).subscribe(() => this.reloadCollections());
   }
 
-  public deleteCollection(id: number) {
-    this.collectionService.deleteCollectionById(id).subscribe(() => this.reloadCollections());
+  public deleteCollection(collection: Collection) {
+    if (collection.id!=undefined) {
+        this.collectionService.deleteCollectionById(collection.id).subscribe(() => this.reloadCollections());
+
+    }
   }
 
   public updateCollection(collection: Collection) {

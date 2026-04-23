@@ -21,4 +21,4 @@ export class AuteurService {
     return this.http.delete<void>(`/auteur/${ id }`);
   }
 }
-}
+
