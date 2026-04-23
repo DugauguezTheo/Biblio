@@ -32,7 +32,7 @@
     <div class="mb-3 row">
         <label for="auteur" class="col-sm-2 col-form-label">Auteur</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="auteur" formControlName="auteur" />
+            <input type="text" class="form-control" id="auteur" formControlName="auteur.nom" />
         </div>
 
         <div *ngIf="formAuteurCtrl.hasError('required')">L'auteur est obligatoire</div>
@@ -41,7 +41,7 @@
     <div class="mb-3 row">
         <label for="editeur" class="col-sm-2 col-form-label">Éditeur</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="editeur" formControlName="editeur" />
+            <input type="text" class="form-control" id="editeur" formControlName="editeur.nom" />
         </div>
 
         <div *ngIf="formEditeurCtrl.hasError('required')">L'éditeur est obligatoire</div>
@@ -50,7 +50,7 @@
     <div class="mb-3 row">
         <label for="collection" class="col-sm-2 col-form-label">Collection</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="collection" formControlName="collection" />
+            <input type="text" class="form-control" id="collection" formControlName="collection.nom" />
         </div>
     </div>
 

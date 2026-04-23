@@ -3,21 +3,23 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Observable, startWith, Subject, switchMap } from 'rxjs';
+import { Collection } from '../../model/collection';
+import { CollectionService } from '../../service/collection-service';
 
 @Component({
-  selector: 'app-collection',
+  selector: 'app-collections-page',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './collection.html',
-  styleUrl: './collection.css',
+  templateUrl: './collections.html',
+  styleUrl: './collections.css',
 })
-export class Collection implements OnInit {
+export class CollectionsPage implements OnInit {
   private titleService: Title = inject(Title);
   private collectionService: CollectionService = inject(CollectionService);
   private formBuilder: FormBuilder = inject(FormBuilder);
 
   private collection: Collection = {nom: ''};
   
-  protected collections$: Observable<Collection[]>;
+  protected collections$!: Observable<Collection[]>;
   private refresh$: Subject<void> = new Subject<void>();
   
   protected formCollection!: FormGroup;
@@ -43,14 +45,14 @@ export class Collection implements OnInit {
 
   public addCollection() {
     const collection: Collection = {
-      id: 1
+      id: 1,
       nom: this.formNomCtrl.value
     };
     this.collectionService.addCollection(collection).subscribe(() => this.reloadCollections());
   }
 
-  public deleteCollection(collection: Collection) {
-    this.collectionService.deleteCollectionById(collection.id).subscribe(() => this.reloadCollections());
+  public deleteCollection(id: number) {
+    this.collectionService.deleteCollectionById(id).subscribe(() => this.reloadCollections());
   }
 
   public updateCollection(collection: Collection) {
