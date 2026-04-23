@@ -1,0 +1,70 @@
+name: bibliotek
+
+# Décrire tous les services, volumes, network, etc. nécessaire au bon fonctionnement
+
+# Descrription des différents containers
+services:
+  # Description du container "mysql"
+  # docker run -d -e MYSQL_ROOT_PASSWORD=root --name quest-mysql --network quest -v "D:/ajc/quest-init.sql":/docker-entrypoint-initdb.d/init.sql mysql:8.0.45
+  mysql:
+    image: mysql:8.0.45
+    container_name: bibliotek-mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+    volumes:
+      # Pour initialiser la base
+      - ./quest-init.sql:/docker-entrypoint-initdb.d/init.sql
+
+      # Pour persister les données après suppression / mise à jour du container
+      - mysql_data:/var/lib/mysql
+
+    networks:
+      - quest
+
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 3s
+      retries: 10
+      interval: 5s
+
+  java:
+    image: bibliotek-java
+    container_name: bibliotek-boot
+
+    networks:
+      - bibliotek-network
+
+    ports:
+      - 8080:8080
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://bibliotek-mysql:3306/biblio
+      SPRING_DATASOURCE_USERNAME: root
+
+    depends_on:
+      # On va attendre que mysql démarre ET qu'il soit prêt à être utilisé
+      mysql:
+        condition: service_healthy
+
+  angular:
+    image: bibliotek-angular
+    container_name: bibliotek-angular
+
+    networks:
+      - bibliotek-network
+
+    ports:
+      - 80:80
+
+    depends_on:
+      - java
+
+networks:
+  bibliotek-network:
+    name: bibliotek-network
+
+volumes:
+  mysql_data:
+    name: bibliotek-mysql-data
