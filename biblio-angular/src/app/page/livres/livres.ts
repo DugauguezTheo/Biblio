@@ -5,6 +5,12 @@ import { Observable, startWith, Subject, switchMap } from 'rxjs';
 import { Livre } from '../../model/livre';
 import { LivreService } from '../../service/livre-service';
 import { CommonModule } from '@angular/common';
+import { EditeurService } from '../../service/editeur-service';
+import { AuteurService } from '../../service/auteur-service';
+import { CollectionService } from '../../service/collection-service';
+import { Editeur } from '../../model/editeur';
+import { Auteur } from '../../model/auteur';
+import { Collection } from '../../model/collection';
 
 @Component({
   selector: 'app-livre',
@@ -19,9 +25,15 @@ export class Livres implements OnInit{
 
   private titleService: Title = inject(Title);
   private livreService: LivreService = inject(LivreService);
+  protected editeurService: EditeurService = inject(EditeurService);
+  protected auteurService: AuteurService = inject(AuteurService);
+  protected collectionService: CollectionService = inject(CollectionService);
   private formBuilder: FormBuilder = inject(FormBuilder);
 
   protected livres$!: Observable<Livre[]>;
+  protected editeurs!: Observable<Editeur[]>;
+  protected auteurs!: Observable<Auteur[]>;
+  protected collections!: Observable<Collection[]>;
   private refresh$: Subject<void> = new Subject<void>();
 
   protected formLivre !: FormGroup;
@@ -39,6 +51,10 @@ export class Livres implements OnInit{
       startWith(0), // Initialisation => forcer le chargement une première fois
       switchMap(() => this.livreService.findAll()) // Transformer au moment du next()
     );
+
+    this.editeurs = this.editeurService.findAll();
+    this.auteurs = this.auteurService.findAll();
+    this.collections = this.collectionService.findAllCollections();
 
     // Fabrication du formulaire avec le FormBuilder
     this.formTitreCtrl = this.formBuilder.control("Valeur par défaut", Validators.required);

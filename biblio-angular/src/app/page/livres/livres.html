@@ -32,7 +32,10 @@
     <div class="mb-3 row">
         <label for="auteur" class="col-sm-2 col-form-label">Auteur</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="auteur" formControlName="auteur.nom" />
+            <select name="auteur" id="auteur">
+              <option value=""> -- Selectionner un auteur --</option>
+              <option *ngFor="let a of auteurs;" formControlName="auteur.nom">{{ a.nom }}</option>
+            </select>
         </div>
 
         <div *ngIf="formAuteurCtrl.hasError('required')">L'auteur est obligatoire</div>
@@ -41,7 +44,10 @@
     <div class="mb-3 row">
         <label for="editeur" class="col-sm-2 col-form-label">Éditeur</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="editeur" formControlName="editeur.nom" />
+            <select name="editeur" id="editeur">
+              <option value=""> -- Selectionner un editeur --</option>
+              <option *ngFor="let e of editeurs;" formControlName="editeur.nom">{{ e.nom }}</option>
+            </select>
         </div>
 
         <div *ngIf="formEditeurCtrl.hasError('required')">L'éditeur est obligatoire</div>
@@ -50,7 +56,10 @@
     <div class="mb-3 row">
         <label for="collection" class="col-sm-2 col-form-label">Collection</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="collection" formControlName="collection.nom" />
+            <select name="collection" id="collection">
+              <option value=""> -- Selectionner une collection --</option>
+              <option *ngFor="let c of collections;" formControlName="collection?.nom">{{ c.nom }}</option>
+            </select>
         </div>
     </div>
 
@@ -82,9 +91,9 @@
             <td>{{ livre.titre }}</td>
             <td>{{ livre.resume }}</td>
             <td>{{ livre.annee }}</td>
-            <td>{{ livre.auteur }}</td>
-            <td>{{ livre.editeur }}</td>
-            <td>{{ livre.collection }}</td>
+            <td>{{ livre.auteur.nom }}</td>
+            <td>{{ livre.editeur.nom }}</td>
+            <td>{{ livre.collection?.nom }}</td>
             <td>
                 <button class="btn btn-danger" (click)="deleteLivre(livre)">Supprimer</button>
             </td>
