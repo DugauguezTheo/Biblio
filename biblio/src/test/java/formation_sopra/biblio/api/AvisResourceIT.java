@@ -8,11 +8,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import formation_sopra.biblio.model.Avis;
 import formation_sopra.biblio.dao.AvisRepository;
 import jakarta.persistence.EntityManager;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.AfterEach;
@@ -40,8 +43,13 @@ class AvisResourceIT {
     private static final String DEFAULT_COMMENTAIRES = "AAAAAAAAAA";
     private static final String UPDATED_COMMENTAIRES = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_DATE = Instant.ofEpochMilli(0L)
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
+
+    private static final LocalDate UPDATED_DATE = Instant.now()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate();
 
     private static final String ENTITY_API_URL = "/api/avis";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";

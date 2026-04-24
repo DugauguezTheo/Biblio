@@ -59,6 +59,8 @@ public class AvisAsserts {
      * @param actual the actual entity
      */
     public static void assertAvisUpdatableRelationshipsEquals(Avis expected, Avis actual) {
-        // empty method
+        assertThat(actual)
+            .as("Verify Avis relationships")
+            .satisfies(a -> assertThat(a.getLivre()).as("check livre").isEqualTo(expected.getLivre()));
     }
 }
