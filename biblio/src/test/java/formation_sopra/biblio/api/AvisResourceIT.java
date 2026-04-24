@@ -80,7 +80,7 @@ class AvisResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Avis createEntity() {
-        return new Avis().note(DEFAULT_NOTE).commentaires(DEFAULT_COMMENTAIRES).date(DEFAULT_DATE);
+        return new Avis().note(DEFAULT_NOTE).commentaire(DEFAULT_COMMENTAIRES).date(DEFAULT_DATE);
     }
 
     /**
@@ -90,7 +90,7 @@ class AvisResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Avis createUpdatedEntity() {
-        return new Avis().note(UPDATED_NOTE).commentaires(UPDATED_COMMENTAIRES).date(UPDATED_DATE);
+        return new Avis().note(UPDATED_NOTE).commentaire(UPDATED_COMMENTAIRES).date(UPDATED_DATE);
     }
 
     @BeforeEach
@@ -158,7 +158,7 @@ class AvisResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(avis.getId().intValue())))
             .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE)))
-            .andExpect(jsonPath("$.[*].commentaires").value(hasItem(DEFAULT_COMMENTAIRES)))
+            .andExpect(jsonPath("$.[*].commentaire").value(hasItem(DEFAULT_COMMENTAIRES)))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
 
@@ -175,7 +175,7 @@ class AvisResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(avis.getId().intValue()))
             .andExpect(jsonPath("$.note").value(DEFAULT_NOTE))
-            .andExpect(jsonPath("$.commentaires").value(DEFAULT_COMMENTAIRES))
+            .andExpect(jsonPath("$.commentaire").value(DEFAULT_COMMENTAIRES))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
     }
 
@@ -198,7 +198,7 @@ class AvisResourceIT {
         Avis updatedAvis = avisRepository.findById(avis.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedAvis are not directly saved in db
         em.detach(updatedAvis);
-        updatedAvis.note(UPDATED_NOTE).commentaires(UPDATED_COMMENTAIRES).date(UPDATED_DATE);
+        updatedAvis.note(UPDATED_NOTE).commentaire(UPDATED_COMMENTAIRES).date(UPDATED_DATE);
 
         restAvisMockMvc
             .perform(
@@ -300,7 +300,7 @@ class AvisResourceIT {
         Avis partialUpdatedAvis = new Avis();
         partialUpdatedAvis.setId(avis.getId());
 
-        partialUpdatedAvis.note(UPDATED_NOTE).commentaires(UPDATED_COMMENTAIRES).date(UPDATED_DATE);
+        partialUpdatedAvis.note(UPDATED_NOTE).commentaire(UPDATED_COMMENTAIRES).date(UPDATED_DATE);
 
         restAvisMockMvc
             .perform(

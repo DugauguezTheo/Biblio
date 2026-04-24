@@ -48,7 +48,7 @@ public class AvisAsserts {
         assertThat(actual)
             .as("Verify Avis relevant properties")
             .satisfies(a -> assertThat(a.getNote()).as("check note").isEqualTo(expected.getNote()))
-            .satisfies(a -> assertThat(a.getCommentaires()).as("check commentaires").isEqualTo(expected.getCommentaires()))
+            .satisfies(a -> assertThat(a.getCommentaire()).as("check commentaires").isEqualTo(expected.getCommentaire()))
             .satisfies(a -> assertThat(a.getDate()).as("check date").isEqualTo(expected.getDate()));
     }
 

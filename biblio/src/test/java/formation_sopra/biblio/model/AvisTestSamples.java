@@ -10,14 +10,14 @@ public class AvisTestSamples {
     private static final AtomicLong longCount = new AtomicLong(random.nextInt() + (2L * Integer.MAX_VALUE));
 
     public static Avis getAvisSample1() {
-        return new Avis().id(1L).commentaires("commentaires1");
+        return new Avis().id(1L).commentaire("commentaires1");
     }
 
     public static Avis getAvisSample2() {
-        return new Avis().id(2L).commentaires("commentaires2");
+        return new Avis().id(2L).commentaire("commentaires2");
     }
 
     public static Avis getAvisRandomSampleGenerator() {
-        return new Avis().id(longCount.incrementAndGet()).commentaires(UUID.randomUUID().toString());
+        return new Avis().id(longCount.incrementAndGet()).commentaire(UUID.randomUUID().toString());
     }
 }
