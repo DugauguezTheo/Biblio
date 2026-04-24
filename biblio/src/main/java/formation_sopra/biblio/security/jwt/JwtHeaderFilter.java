@@ -45,10 +45,11 @@ public class JwtHeaderFilter extends OncePerRequestFilter {
 
                 Personne personne = this.daoPersonne.findByLogin(username).orElseThrow();
 
-                // List<GrantedAuthority> authorities = new ArrayList<>();
+                List<GrantedAuthority> authorities = new ArrayList<>();
+                authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
                 // Recréer une Authentication Spring Security
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null, null);
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null, authorities);
 
                 // Affecter l'authentication dans le contexte de Spring Security -> lui dire OK, l'utilisateur est authentifié !
                 SecurityContextHolder.getContext().setAuthentication(auth);
