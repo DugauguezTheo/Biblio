@@ -23,33 +23,8 @@ export class LoginPage implements OnInit {
   protected formPasswordCtrl!: FormControl;
 
   ngOnInit(): void {
-    const customValidator = (arg: string): ValidatorFn => {
-      return (control: AbstractControl): ValidationErrors | null => {
-        // Si erreur
-        const isValid = control.value === arg;
 
-        if (!isValid) {
-          return { compare: true };
-        }
-
-        // Si pas d'erreur
-        return null;
-      };
-    };
-
-    const customValidatorV2 = (control: AbstractControl): ValidationErrors | null => {
-      // Si erreur
-      const isValid = /^[a-z]+$/.test(control.value);
-
-      if (!isValid) {
-        return { minusculeV2: true };
-      }
-
-      // Si pas d'erreur
-      return null;
-    };
-
-    this.formUsernameCtrl = this.formBuilder.control("", [ Validators.required, customValidator("test"), customValidatorV2 ]);
+    this.formUsernameCtrl = this.formBuilder.control("", [ Validators.required ]);
     this.formPasswordCtrl = this.formBuilder.control("", Validators.required);
 
     this.formAuth = this.formBuilder.group({
