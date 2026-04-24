@@ -122,7 +122,7 @@ public class AvisResource {
             .findById(avis.getId())
             .map(existingAvis -> {
                 updateIfPresent(existingAvis::setNote, avis.getNote());
-                updateIfPresent(existingAvis::setCommentaires, avis.getCommentaires());
+                updateIfPresent(existingAvis::setCommentaire, avis.getCommentaire());
                 updateIfPresent(existingAvis::setDate, avis.getDate());
 
                 return existingAvis;
