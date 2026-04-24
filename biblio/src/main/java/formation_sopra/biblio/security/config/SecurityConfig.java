@@ -11,24 +11,30 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import formation_sopra.biblio.security.jwt.JwtHeaderFilter;
 
 
 
 @Configuration
 public class SecurityConfig {
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http, JwtHeaderFilter jwtHeaderFilter) throws Exception {
         http.authorizeHttpRequests(authorization -> {
-            authorization.requestMatchers("/**").permitAll();
+            authorization.requestMatchers("/api/auth", "/api/inscription").permitAll();
+            authorization.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll();
+            authorization.requestMatchers("/**").authenticated();
         });
 
         http.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"));
 
         http.cors(Customizer.withDefaults());
+
+        http.addFilterBefore(jwtHeaderFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
