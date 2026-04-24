@@ -99,7 +99,10 @@ export class Livres implements OnInit{
       })
     }
     else{
-      this.livreService.addLivre(livre).subscribe(() => this.reload());
+      this.livreService.addLivre(livre).subscribe(() => {
+        this.formLivre.reset();
+        this.reload();
+      })
     }
   }
 

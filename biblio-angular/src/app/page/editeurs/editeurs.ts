@@ -76,7 +76,10 @@ export class Editeurs implements OnInit {
       })
     }
     else {
-      this.editeurService.addEditeur(editeur).subscribe(() => this.reload());
+      this.editeurService.addEditeur(editeur).subscribe(() => {
+        this.formEditeur.reset();
+        this.reload();
+      })
     }
   }
 

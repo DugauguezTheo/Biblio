@@ -72,7 +72,10 @@ public addOrUpdate(){
       })
     }
     else{
-      this.auteurService.addAuteur(auteur).subscribe(() => this.reload());
+      this.auteurService.addAuteur(auteur).subscribe(() => {
+        this.formAuteur.reset();
+        this.reload()
+      });
     }
   }
 

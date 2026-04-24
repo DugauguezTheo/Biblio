@@ -65,7 +65,11 @@ export class CollectionsPage implements OnInit {
       })
     }
     else{
-      this.collectionService.addCollection(collection).subscribe(() => this.reloadCollections());
+      this.collectionService.addCollection(collection).subscribe(() => {
+        this.formCollection.reset;
+        this.reloadCollections();
+    });
+
     }
   }
 

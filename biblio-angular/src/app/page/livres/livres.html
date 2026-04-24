@@ -35,7 +35,7 @@
         <div class="col-sm-10">
             <select name="auteur" id="auteur" formControlName="auteur" [class.is-invalid]="formAuteurCtrl.invalid" [compareWith]="compareAuteur">
               <option [ngValue]="null"> -- Selectionner un auteur --</option>
-              <option *ngFor="let a of auteurs | async" [ngValue]="a">{{ a.nom }}</option>
+              <option *ngFor="let a of auteurs | async" [ngValue]="a">{{ a.prenom }} {{ a.nom }}</option>
             </select>
             <div *ngIf="formAuteurCtrl.hasError('required')" class="invalid-feedback">L'auteur est obligatoire</div>
         </div>
