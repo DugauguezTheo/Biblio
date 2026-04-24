@@ -1,7 +1,6 @@
 package formation_sopra.biblio.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public class SubscriptionRequest {
     @NotBlank

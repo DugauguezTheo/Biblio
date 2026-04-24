@@ -5,16 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import formation_sopra.biblio.dao.IDAOPersonne;
-import formation_sopra.biblio.model.Personne;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,9 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtHeaderFilter extends OncePerRequestFilter {
-    @Autowired
-    private IDAOPersonne daoPersonne;
-
+    
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
@@ -42,8 +36,6 @@ public class JwtHeaderFilter extends OncePerRequestFilter {
             if (optUsername.isPresent()) {
                 String username = optUsername.get();
                 System.out.println("jeton valide, user = " + username);
-
-                Personne personne = this.daoPersonne.findByLogin(username).orElseThrow();
 
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
