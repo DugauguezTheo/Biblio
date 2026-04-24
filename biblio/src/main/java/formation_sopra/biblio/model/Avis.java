@@ -24,8 +24,8 @@ public class Avis implements Serializable {
     @Column(name = "note")
     private Double note;
 
-    @Column(name = "commentaires")
-    private String commentaires;
+    @Column(name = "commentaire")
+    private String commentaire;
 
     @Column(name = "date")
     private LocalDate date;
@@ -60,17 +60,17 @@ public class Avis implements Serializable {
         this.note = note;
     }
 
-    public String getCommentaires() {
-        return this.commentaires;
+    public String getCommentaire() {
+        return this.commentaire;
     }
 
-    public Avis commentaires(String commentaires) {
-        this.setCommentaires(commentaires);
+    public Avis commentaire(String commentaire) {
+        this.setCommentaire(commentaire);
         return this;
     }
 
-    public void setCommentaires(String commentaires) {
-        this.commentaires = commentaires;
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public LocalDate getDate() {
@@ -117,7 +117,7 @@ public class Avis implements Serializable {
         return "Avis{" +
             "id=" + getId() +
             ", note=" + getNote() +
-            ", commentaires='" + getCommentaires() + "'" +
+            ", commentaire='" + getCommentaire() + "'" +
             ", date='" + getDate() + "'" +
             "}";
     }

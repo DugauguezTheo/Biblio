@@ -44,6 +44,8 @@ export class AvisPage implements OnInit{
   //Variables
   protected notes: number[] = [1, 2, 3, 4, 5];
   protected livres!: Observable<Livre[]>;
+  protected editingAvis?: Avis | null;
+
 
   ngOnInit(): void {
 
@@ -86,18 +88,18 @@ export class AvisPage implements OnInit{
     this.refresh$.next();
   }
 
-  public addAvis(){
-    const avis: Avis = {
-      note: this.formNoteCtrl.value,
-      commentaire: this.formCommentaireCtrl.value,
-      date: this.formDateCtrl.value,
-      livre: this.formLivreCtrl.value}
+  // public addAvis(){
+  //   const avis: Avis = {
+  //     note: this.formNoteCtrl.value,
+  //     commentaire: this.formCommentaireCtrl.value,
+  //     date: this.formDateCtrl.value,
+  //     livre: this.formLivreCtrl.value}
   
-      this.avisService.add(avis).subscribe(() => {this.reload();});
+  //     this.avisService.add(avis).subscribe(() => {this.reload();});
 
-      //Reset the form
-      this.formAvis.reset();
-    }
+  //     //Reset the form
+  //     this.formAvis.reset();
+  //   }
 
 
   public deleteAvis(avis: Avis){
@@ -106,9 +108,46 @@ export class AvisPage implements OnInit{
   }
 
 
-  public updateAvis(avis: Avis) {
-      this.avisService.update(avis).subscribe(() => {this.reload();});
+  // public updateAvis(avis: Avis) {
+  //     this.avisService.update(avis).subscribe(() => {this.reload();});
       
+  //   }
+
+
+    
+  public addOrUpdateAvis() {
+    const avis: Avis = {
+      id: this.editingAvis?.id,
+      note: this.formNoteCtrl.value,
+      commentaire: this.formCommentaireCtrl.value,
+      date: this.formDateCtrl.value,
+      livre: this.formLivreCtrl.value,
     }
+    console.log(avis.commentaire)
+    if (this.editingAvis) {
+      this.avisService.update(avis).subscribe(() => {
+        this.editingAvis = null;
+        this.formAvis.reset();
+        this.reload();
+      })
+    }
+    else {
+      this.avisService.add(avis).subscribe(() => { this.formAvis.reset(); this.reload()});
+    }
+  }
+
+  public editerAvis(avis: Avis) {
+    this.editingAvis = avis;
+    this.formNoteCtrl.setValue(avis.note);
+    this.formCommentaireCtrl.setValue(avis.commentaire);
+    this.formDateCtrl.setValue(avis.date);
+    this.formLivreCtrl.setValue(avis.livre);
+  
+    this.reload();
+  }
+
+  compareLivre(l1: Livre, l2: Livre): boolean {
+  return l1 && l2 ? l1.id === l2.id : l1 === l2;
+}
 
 }

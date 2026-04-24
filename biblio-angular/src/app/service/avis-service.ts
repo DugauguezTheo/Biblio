@@ -15,7 +15,7 @@ export class AvisService {
   }
 
   public findById(id: number) {
-      return this.http.get<Avis>(`/collection/${id}`);
+      return this.http.get<Avis>(`/avis/${id}`);
   }
 
   public add(avis: Avis): Observable<Avis> {
@@ -24,7 +24,7 @@ export class AvisService {
 
 
   public update(avis: Avis) {
-      return this.http.put(`/collection/${avis.id}`, avis);
+      return this.http.put(`/avis/${avis.id}`, avis);
   }
 
 
