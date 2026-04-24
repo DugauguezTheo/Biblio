@@ -165,22 +165,6 @@ class LivreResourceIT {
             .andExpect(jsonPath("$.[*].annee").value(hasItem(DEFAULT_ANNEE)));
     }
 
-    @SuppressWarnings({ "unchecked" })
-    void getAllLivresWithEagerRelationshipsIsEnabled() throws Exception {
-        when(livreRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restLivreMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(livreRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllLivresWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(livreRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restLivreMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
-        verify(livreRepositoryMock, times(1)).findAll(any(Pageable.class));
-    }
 
     @Test
     @Transactional
