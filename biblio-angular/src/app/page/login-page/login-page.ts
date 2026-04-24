@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
     this.authService.auth(authRequest).subscribe(resp => {
       if (resp.success) {
         this.authService.token = resp.token;
-        this.router.navigate([ '/matiere' ]);
+        this.router.navigate([ '/livre' ]);
       }
     });
   }
