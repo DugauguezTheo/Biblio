@@ -15,7 +15,7 @@ services:
 
     volumes:
       # Pour initialiser la base
-      - ./quest-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./biblio-init.sql:/docker-entrypoint-initdb.d/init.sql
 
       # Pour persister les données après suppression / mise à jour du container
       - mysql_data:/var/lib/mysql
