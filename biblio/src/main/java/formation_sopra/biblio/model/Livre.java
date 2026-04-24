@@ -25,7 +25,7 @@ public class Livre implements Serializable {
     private String resume;
 
     @Column(name = "annee")
-    private String annee;
+    private Integer annee;
 
     @ManyToOne
     private Auteur auteur;
@@ -90,16 +90,16 @@ public class Livre implements Serializable {
         this.resume = resume;
     }
 
-    public String getAnnee() {
+    public Integer getAnnee() {
         return this.annee;
     }
 
-    public Livre annee(String annee) {
+    public Livre annee(Integer annee) {
         this.setAnnee(annee);
         return this;
     }
 
-    public void setAnnee(String annee) {
+    public void setAnnee(Integer annee) {
         this.annee = annee;
     }
 

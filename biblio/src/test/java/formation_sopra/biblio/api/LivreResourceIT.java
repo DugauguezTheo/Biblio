@@ -53,8 +53,8 @@ class LivreResourceIT {
     private static final String DEFAULT_RESUME = "AAAAAAAAAA";
     private static final String UPDATED_RESUME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_ANNEE = "AAAAAAAAAA";
-    private static final String UPDATED_ANNEE = "BBBBBBBBBB";
+    private static final Integer DEFAULT_ANNEE = 1;
+    private static final Integer UPDATED_ANNEE = 2;
 
     private static final String ENTITY_API_URL = "/api/livre";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
