@@ -54,7 +54,7 @@ services:
 
   java:
     image: ajc/quest-boot
-    container_name: quest-boot-jenkins
+    container_name: quest-boot
 
     networks:
       - quest-jenkins
@@ -77,7 +77,7 @@ services:
 
   angular:
     image: ajc/quest-angular
-    container_name: quest-angular-jenkins
+    container_name: quest-angular
 
     networks:
       - quest-jenkins
