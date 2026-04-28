@@ -30,7 +30,7 @@ services:
       interval: 5s
 
   java:
-    image: bibliotek-java
+    image: ajc/biblio-boot
     container_name: bibliotek-boot
 
     networks:
@@ -49,7 +49,7 @@ services:
         condition: service_healthy
 
   angular:
-    image: bibliotek-angular
+    image: ajc/biblio-angular
     container_name: bibliotek-angular
 
     networks:
