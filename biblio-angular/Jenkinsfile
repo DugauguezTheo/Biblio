@@ -40,11 +40,10 @@ pipeline {
 
         stage('Docker deploy') {
             steps {
-                // Se placer dans le répertoire (éventuellement) dans lequel se trouve le docker-compose.yml
-                dir('biblio-angular') {
-                sh 'docker compose up -d --no-deps angular'
+                  // Se placer dans le répertoire (éventuellement) dans lequel se trouve le docker-compose.yml
+                  sh 'docker compose up -d --no-deps angular'
                 }
-            }
+
         }
     }
 }
