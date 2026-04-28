@@ -15,8 +15,8 @@ pipeline {
                     args '''
                         -v $HOME/.m2:/root/.m2:z
                         -u root
-                        --network biblio-network
-                    ''' // On se place sur le réseau biblio-network pour pouvoir contacter sonar !
+                        --network devops
+                    ''' // On se place sur le réseau devops pour pouvoir contacter sonar !
                     reuseNode true // Permet de garder le même workspace entre les différents agents (any & docker)
                 }
             }

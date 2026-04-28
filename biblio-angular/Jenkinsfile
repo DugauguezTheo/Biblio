@@ -11,6 +11,7 @@ pipeline {
                     args '''
                         -v $HOME/.npm:/root/.npm:z
                         -u root
+                        --network devops
                     '''
                     reuseNode true // Permet de garder le même workspace entre les différents agents (any & docker)
                 }
