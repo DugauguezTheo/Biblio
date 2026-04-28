@@ -22,19 +22,19 @@ pipeline {
             }
 
             steps {
-                // dir('biblio') {
+                dir('biblio') {
                     withSonarQubeEnv('sonar-scanner') {
                         sh "mvn verify sonar:sonar -Dsonar.projectKey=biblio -Dsonar.projectName='biblio'"
                     }
-                // }
+                }
             }
         }
 
         stage('Docker build') {
             steps {
-                // dir('biblio') {
+                dir('biblio') {
                     sh 'docker build -t ajc/biblio-boot .'
-                // }
+                }
             }
         }
     }
