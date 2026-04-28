@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'maven-3.9'
+    }
+
+    stages {
+
+        stage('Maven build') {
+            // Demander à Jenkins d'exécuter le builder dans un container Docker
+            agent {
+                docker {
+                    image 'maven:3.9.11-eclipse-temurin-21'
+                    args '''
+                        -v $HOME/.m2:/root/.m2:z
+                        -u root
+                        --network biblio-network
+                    ''' // On se place sur le réseau biblio-network pour pouvoir contacter sonar !
+                    reuseNode true // Permet de garder le même workspace entre les différents agents (any & docker)
+                }
+            }
+
+            steps {
+                // dir('biblio') {
+                    withSonarQubeEnv('sonar-scanner') {
+                        sh "mvn verify sonar:sonar -Dsonar.projectKey=biblio -Dsonar.projectName='biblio'"
+                    }
+                // }
+            }
+        }
+
+        stage('Docker build') {
+            steps {
+                // dir('biblio') {
+                    sh 'docker build -t ajc/biblio-boot .'
+                // }
+            }
+        }
+    }
+}
