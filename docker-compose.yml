@@ -22,7 +22,6 @@ services:
 
     networks:
       - biblio-network
-      - devops
 
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
@@ -36,7 +35,6 @@ services:
 
     networks:
       - biblio-network
-      - devops
 
     ports:
       - 8080:8080
@@ -56,7 +54,6 @@ services:
 
     networks:
       - biblio-network
-      - devops
 
     ports:
       - 80:80
@@ -67,9 +64,6 @@ services:
 networks:
   biblio-network:
     name: biblio-network
-
-  devops:
-    name: devops
 
 volumes:
   mysql_data:
