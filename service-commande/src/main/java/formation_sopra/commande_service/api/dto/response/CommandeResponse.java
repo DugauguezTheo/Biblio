@@ -6,5 +6,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommandeResponse {
-    private 
+    private Integer id;
+
+    public static CommandeResponse convert(Produit produit) {
+        CommandeResponse resp = new CommandeResponse();
+
+        resp.setId(produit.getId());
+        resp.setLibelle(produit.getLibelle());
+        resp.setPrix(produit.getPrix());
+
+        return resp;
+    }
 }
