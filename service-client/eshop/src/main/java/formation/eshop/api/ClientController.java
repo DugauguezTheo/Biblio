@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,11 @@ public class ClientController {
     @GetMapping("/{id}")
     public Client findById(Integer id) {
         return clientService.findById(id);
+    }
+    
+    @GetMapping("/nom-client-by-id/{id}")
+    String findNomClientById(@PathVariable Integer id){
+        return this.clientService.findNomClientById(id);
     }
 
     @PostMapping
