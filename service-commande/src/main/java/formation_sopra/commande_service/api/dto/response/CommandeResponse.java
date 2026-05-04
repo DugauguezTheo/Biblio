@@ -12,6 +12,7 @@ import lombok.Setter;
 public class CommandeResponse {
     private Integer id;
     private List<CommandeDetails> commandeDetails;
+    private String nom_client;
 
     public static CommandeResponse convert(Commande commande) {
         CommandeResponse resp = new CommandeResponse();
