@@ -27,6 +27,9 @@ public class CommandeDetails {
     @Column(name = "produit", nullable = false, length = 50)
     private String libelleProduit;
 
+    @Column(name = "quantite_produit", nullable = false)
+    private int quantite;
+
     @Column(name = "prix_unitaire", nullable = false)
     private double prixUnitaireProduit;
 
