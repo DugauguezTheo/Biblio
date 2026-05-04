@@ -2,6 +2,7 @@ package formation_sopra.commande_service.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,9 @@ public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "id_client")
+    private Integer clientId;
 
     @OneToMany
     private List<CommandeDetails> commandeDetails;

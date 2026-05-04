@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(value = "client-service", url = "http://localhost:8081/api/client")
 public interface ClientFeign {
-    @GetMapping("/by-commande-id/client/{commandeId}")
-    String findClientByCommandeId(Integer id);
+    @GetMapping("/nom-client-by-id/{id}")
+    String findNomClientById(Integer id);
 }

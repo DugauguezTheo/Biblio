@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import formation.eshop.dao.IDAOClient;
+import formation.eshop.dto.response.CommandeResponse;
 import formation.eshop.feign.CommandeFeign;
 import formation.eshop.model.Client;
 
@@ -32,8 +33,12 @@ public class ClientService {
         return daoClient.save(client);
     }
 
+    public String findNomClientById(Integer id){
+        return daoClient.findById(id).orElse(null).getNom();
+    }
+
     public void deleteById(Integer id) {
-        List<Commande> commandes = commandeFeign.findAllByClientId(id);
+        List<CommandeResponse> commandes = commandeFeign.findAllByClientId(id);
         if (commandes.isEmpty()) {
             daoClient.deleteById(id);
         } else {
