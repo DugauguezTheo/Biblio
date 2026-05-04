@@ -8,6 +8,7 @@ import lombok.Setter;
 public class CommandeDetailsResponse {
 
     private Integer id;
+    private Integer idCommande;
     private int qte;
     private double prixUnitaire;
     private String libelle;
@@ -16,6 +17,7 @@ public class CommandeDetailsResponse {
         CommandeDetailsResponse resp = new CommandeDetailsResponse();
 
         resp.setId(commandeDetails.getIdDetails());
+        resp.setIdCommande(commandeDetails.getCommande().getId());
         resp.setQte(commandeDetails.getQuantite());
         resp.setPrixUnitaire(commandeDetails.getPrixUnitaireProduit());
         resp.setLibelle(commandeDetails.getLibelleProduit());

@@ -14,4 +14,7 @@ public interface ProduitFeign {
     @DeleteMapping("/by-produit-id/{produitId}")
     public String deleteAllByProduitId(@PathVariable Integer produitId);
 
+    @GetMapping("/id-by-libelle-produit/{libelle}")
+    public Integer findIdProduitByLibelle(@PathVariable String libelle);
+
 }
