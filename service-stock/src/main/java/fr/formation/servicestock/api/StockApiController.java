@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.formation.servicestock.feign.ProduitFeign;
@@ -49,10 +50,10 @@ public class StockApiController {
     }
 
     @GetMapping("/is-disponible/{produitId}")
-    public boolean isDisponible(@PathVariable Integer produitId) {
+    public boolean isDisponible(@PathVariable Integer produitId, @RequestParam int quantite) {
         log.debug("Est-ce que le produit {} est disponible ?", produitId);
 
-        return this.repository.findByProduitId(produitId).orElseThrow(EntityNotFoundException::new).getQuantite() > 0;
+        return this.repository.findByProduitId(produitId).orElseThrow(EntityNotFoundException::new).getQuantite() >= quantite;
     }
 
     @PostMapping
@@ -101,7 +102,7 @@ public class StockApiController {
     }
 
     @PutMapping("/retrait/{produitId}")
-    public String retraitStock(@PathVariable Integer produitId, @Valid @RequestBody CreateOrUpdateStockRequest request) {
+    public String retraitStock(@PathVariable Integer produitId, @RequestParam int quantite) {
 
         log.debug("Vérification de l'existence du produit {} ...", produitId);
 
@@ -112,9 +113,9 @@ public class StockApiController {
             Stock stock = this.repository.findByProduitId(produitId).orElseThrow(EntityNotFoundException::new);
 
 
-            log.debug("Retrait de {} quantité dans le stock {} ...", request.quantite(), produitId);
+            log.debug("Retrait de {} quantité dans le stock {} ...", quantite, produitId);
 
-            stock.setQuantite(stock.getQuantite() + request.quantite());
+            stock.setQuantite(stock.getQuantite() - quantite);
 
             this.repository.save(stock);
 
