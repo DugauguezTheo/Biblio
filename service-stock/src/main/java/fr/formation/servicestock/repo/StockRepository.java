@@ -8,7 +8,7 @@ import fr.formation.servicestock.model.Stock;
 
 public interface StockRepository extends JpaRepository<Stock, String> {
 
-    public Optional<Stock> findByProduitId(String produitId);
+    public Optional<Stock> findByProduitId(Integer produitId);
     
 
 }

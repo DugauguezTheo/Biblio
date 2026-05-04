@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter @Setter
 public class StockResponse {
     private String id;
-    private String produitId;
+    private Integer produitId;
     private Integer quantite;
 
     public static StockResponse convert(Stock stock) {

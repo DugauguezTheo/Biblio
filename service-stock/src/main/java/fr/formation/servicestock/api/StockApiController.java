@@ -44,12 +44,12 @@ public class StockApiController {
     }
 
     @GetMapping("/{produitId}")
-    public Stock findByProduitId(@PathVariable String produitId) {
+    public Stock findByProduitId(@PathVariable Integer produitId) {
         return this.repository.findByProduitId(produitId).orElseThrow(EntityNotFoundException::new);
     }
 
     @GetMapping("/is-disponible/{produitId}")
-    public boolean isDisponible(@PathVariable String produitId) {
+    public boolean isDisponible(@PathVariable Integer produitId) {
         log.debug("Est-ce que le produit {} est disponible ?", produitId);
 
         return this.repository.findByProduitId(produitId).orElseThrow(EntityNotFoundException::new).getQuantite() > 0;
@@ -74,7 +74,7 @@ public class StockApiController {
 
     
     @PutMapping("/ajout/{produitId}")
-    public String ajoutStock(@PathVariable String produitId, @Valid @RequestBody CreateOrUpdateStockRequest request) {
+    public String ajoutStock(@PathVariable Integer produitId, @Valid @RequestBody CreateOrUpdateStockRequest request) {
 
         log.debug("Vérification de l'existence du produit {} ...", produitId);
 
@@ -101,7 +101,7 @@ public class StockApiController {
     }
 
     @PutMapping("/retrait/{produitId}")
-    public String retraitStock(@PathVariable String produitId, @Valid @RequestBody CreateOrUpdateStockRequest request) {
+    public String retraitStock(@PathVariable Integer produitId, @Valid @RequestBody CreateOrUpdateStockRequest request) {
 
         log.debug("Vérification de l'existence du produit {} ...", produitId);
 

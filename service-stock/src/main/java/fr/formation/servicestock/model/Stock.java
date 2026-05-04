@@ -17,7 +17,7 @@ public class Stock {
     private String id;
 
     @Column(nullable = false)
-    private String produitId;
+    private Integer produitId;
 
     @Column(nullable = false)
     private Integer quantite;
